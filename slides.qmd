@@ -1,0 +1,362 @@
+---
+title: "Quarto Presentations"
+subtitle: "Create beautiful interactive slide decks with Reveal.js"
+format:
+  revealjs: 
+    slide-number: true
+    width: 1600
+    height: 900
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    css: styles.css
+    footer: <https://quarto.org>
+    theme: simple
+resources:
+  - demo.pdf
+---
+
+## Overview
+
+What I will present today:
+
+- How to write, share, and present code and text using R and Quarto
+- How to render code and text into different output formats (including presentations and APA style articles in word)
+- How to use Zotero with R 
+- How to collaborate using Git and GitHub (only introduction)
+
+...and some other stuff
+
+## Resources 
+
+- many of the Quarto-specific slides adapted from [Thomas Mock's presentation](https://github.com/jthomasmock/quarto-2hr-webinar) 
+
+
+## Workshop Prep (do it now!)
+
+- Are you on the latest version of RStudio i.e. [`v2022.07.1` or later](https://www.rstudio.com/products/rstudio/download/#download)?
+
+``` r
+pkg_list <- c(
+  "tidyverse", "gt", "gtExtras", "reactable", "ggiraph", "here", "quarto",
+  "rmarkdown", "gtsummary", "palmerpenguins", "fs", "skimr"
+  )
+install.packages(pkg_list)
+```
+
+## Hello Quarto
+
+> ### Quarto^®^ is an open-source scientific and technical publishing system built on [Pandoc](https://pandoc.org/)
+. . .
+
+> You can weave together narrative text and code to produce elegantly formatted output as documents, web pages, blog posts, books and more.
+
+
+## How does RMarkdown work?
+
+- `knitr` started in 2011, RMarkdown in 2014
+
+![](images/rmd-knitr.png){fig-alt="A diagram of how a RMD is turned into output formats via knitr and pandoc"}
+
+## Quarto, more than *just* `knitr`
+
+. . .
+
+We learned from 10 years of literate programming with `knitr` + `rmarkdown`
+
+![](images/qmd-knitr.jpeg)
+
+## Quarto, more than *just* `knitr`
+
+![](images/qmd-jupyter.jpeg)
+
+## Quarto, more than *just* `knitr`
+
+![](images/jupyter-alone.jpeg)
+
+## Quarto, more internals
+
+-   Quarto uses an engine like `knitr` to execute code and generate a temporary output `.md`
+
+. . .
+
+The `.md` file is processed via Pandoc and Quarto's Lua filters + Bootstrap CSS for HTML or LaTeX for PDF and converted to a final output format
+
+. . .
+
+Lua filters written by R/Python/Julia developers should be interchangeable between formats - typically not language specific!
+
+
+## So what is Quarto?
+
+> Quarto is a command line interface (CLI) that renders plain text formats (`.qmd`, `.rmd`, `.md`) OR mixed formats (`.ipynb`/Jupyter notebook) into static PDF/Word/HTML reports, books, websites, presentations and more
+
+
+## RStudio Visual Editor
+
+![](https://quarto.org/docs/visual-editor/images/visual-editing.png)
+
+
+## One install, "Batteries included"
+
+-   Quarto is bundled and comes pre-installed with RStudio [v2022.07.1](https://www.rstudio.com/products/rstudio/download/#download) and beyond!
+
+- [more infos](https://quarto.org/docs/computations/r.html#chunk-options)
+
+
+## Rendering
+
+![](https://quarto.org/docs/tools/images/rstudio-render.png){fig-alt="A screenshot of the render button in RStudio" width="1000px"}  
+
+. . .
+
+2.  System shell via `quarto render`
+
+::: {style="font-size: 60px;"}
+```{.bash filename="terminal"}
+quarto render document.qmd # defaults to html
+quarto render document.qmd --to pdf
+quarto render document.qmd --to docx
+```
+:::
+
+. . .
+
+3.  R console via `quarto` R package
+
+::: {style="font-size: 60px;"}
+```{r}
+#| eval: false
+#| echo: true
+library(quarto)
+quarto_render("document.qmd") # defaults to html
+quarto_render("document.qmd", output_format = "pdf")
+```
+:::
+
+## Change your mental model
+
+::: columns
+::: {.column width="50%"}
+Source
+
+![](images/word.png){width="450px" fig-alt="A blank Word document"}
+:::
+
+::: {.column width="50%"}
+Output
+
+![](images/word.png){width="450px" fig-alt="A blank Word document"}
+:::
+:::
+
+## Change your mental model
+
+::: columns
+::: {.column width="50%"}
+    ---
+    title: "ggplot2 demo"
+    author: "Norah Jones"
+    date: "5/22/2021"
+    format: 
+      html:
+        fig-width: 8
+        fig-height: 4
+        code-fold: true
+    ---
+
+    ## Air Quality
+
+    @fig-airquality further explores the impact of temperature 
+      on ozone level.
+
+    ```{{r}}
+    #| label: fig-airquality
+    #| fig-cap: Temperature and ozone level.
+    #| warning: false
+    library(ggplot2)
+    ggplot(airquality, aes(Temp, Ozone)) + 
+      geom_point() + 
+      geom_smooth(method = "loess"
+    )
+    ```
+:::
+
+::: {.column width="50%"}
+![](https://quarto.org/images/hello-knitr.png)
+:::
+:::
+
+## A `.qmd` is a plain text file
+
+. . .
+
+-   Metadata (YAML)
+
+:::: {.columns style="font-size: 60px;"}
+
+::: {.column width="45%"}
+``` yaml
+format: html
+engine: knitr
+```
+
+:::
+
+::: {.column width="55%"}
+
+``` yaml
+format: html
+engine: jupyter
+```
+
+:::
+
+::::
+
+. . .
+
+-   Code
+
+:::: {.columns style="font-size: 60px;"}
+
+::: {.column width="45%"}
+
+````code
+```{{r}}
+library(dplyr)
+mtcars |> 
+  group_by(cyl) |> 
+  summarize(mean = mean(mpg))
+```
+````
+
+:::
+
+:::: {.column width="55%"}
+
+````code
+```{{python}}
+from siuba import *
+(mtcars
+  >> group_by(_.cyl)
+  >> summarize(avg_mpg = _.mpg.mean()))
+```
+````
+
+:::
+
+::::
+
+. . .
+
+-   Text
+
+::: {style="font-size: 70px;"}
+``` markdown
+# Heading 1
+This is a sentence with some **bold text**, *italic text* and an 
+![image](image.png){fig-alt="Alt text for this image"}.
+```
+
+:::
+
+## Metadata: YAML
+
+The [YAML](https://yaml.org/) metadata or header is:
+
+> processed in many stages of the rendering process and can influence the final document in many different ways. It is placed at the very beginning of the document and is read by each of Pandoc, Quarto and `knitr`. Along the way, the information that it contains can affect the code, content, and the rendering process.
+## YAML
+
+::: {style="font-size: 80px;"}
+``` yaml
+---
+title: "My Document"
+format: 
+  html:
+    toc: true
+    code-fold: true
+---
+```
+:::
+
+## Markdown
+
+> Quarto is based on Pandoc and uses its variation of markdown as its underlying document syntax. Pandoc markdown is an extended and slightly revised version of John Gruber's [Markdown](https://daringfireball.net/projects/markdown/) syntax.
+. . .
+
+> Markdown is a plain text format that is designed to be easy to write, and, even more importantly, easy to read
+## Text Formatting
+
++-----------------------------------+-------------------------------+
+| Markdown Syntax                   | Output                        |
++===================================+===============================+
+|     *italics* and **bold**        | *italics* and **bold**        |
++-----------------------------------+-------------------------------+
+|     superscript^2^ / subscript~2~ | superscript^2^ / subscript~2~ |
++-----------------------------------+-------------------------------+
+|     ~~strikethrough~~             | ~~strikethrough~~             |
++-----------------------------------+-------------------------------+
+|     `verbatim code`               | `verbatim code`               |
++-----------------------------------+-------------------------------+
+
+## Headings
+
++---------------------+-----------------+
+| Markdown Syntax     | Output          |
++=====================+=================+
+|     # Header 1      | # Header 1      |
++---------------------+-----------------+
+|     ## Header 2     | ## Header 2     |
++---------------------+-----------------+
+|     ### Header 3    | ### Header 3    |
++---------------------+-----------------+
+|     #### Header 4   | #### Header 4   |
++---------------------+-----------------+
+|     ##### Header 5  | ##### Header 5  |
++---------------------+-----------------+
+|     ###### Header 6 | ###### Header 6 |
++---------------------+-----------------+
+
+## Code
+
+```{r}
+#| echo: fenced
+#| output-location: column
+#| label: fig-airquality
+#| fig-cap: Temperature and ozone level.
+#| warning: false
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess"
+)
+```
+
+## Code, more than just R
+
+::: columns
+::: {.column width="50%"}
+```{python}
+#| echo: fenced
+#| eval: false
+#| label: fig-polar
+#| fig-cap: "A line plot on a polar axis"
+import numpy as np
+import matplotlib.pyplot as plt
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(
+  subplot_kw = {'projection': 'polar'} 
+)
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+:::
+
+::: {.column width="50%"}
+![](images/polar-axis.png){width="650px"}
+:::
+:::
