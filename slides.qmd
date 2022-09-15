@@ -1,20 +1,34 @@
 ---
-title: "Quarto Presentations"
-subtitle: "Create beautiful interactive slide decks with Reveal.js"
+title: "Data analysis with R and Quarto + Collaboration using GitHub"
+title-slide-attributes:
+    data-background-color: "#a13c65"
+subtitle: "Introductory workshop for the Human AI Team, Sep 2022"
 format:
   revealjs: 
     slide-number: true
     width: 1600
-    height: 900
+    height: 1200
     chalkboard: 
       buttons: false
     preview-links: auto
-    css: styles.css
     footer: <https://quarto.org>
-    theme: simple
+    theme: [simple, custom.scss]
+    logo: "/images/logoclin.png"
+    scrollable: false
+    center: true
 resources:
   - demo.pdf
 ---
+
+
+```{r setup, include=FALSE}
+library(fontawesome)
+library(tidyverse)
+library(quarto)
+library(gt)
+library(gtExtras)
+```
+
 
 ## Overview
 
@@ -30,6 +44,7 @@ What I will present today:
 ## Resources 
 
 - many of the Quarto-specific slides adapted from [Thomas Mock's presentation](https://github.com/jthomasmock/quarto-2hr-webinar) 
+- many helpful resources may be found in [this GitHub repository](https://github.com/mcanouil/awesome-quarto)
 
 
 ## Workshop Prep (do it now!)
@@ -54,7 +69,6 @@ install.packages(pkg_list)
 
 ## How does RMarkdown work?
 
-- `knitr` started in 2011, RMarkdown in 2014
 
 ![](images/rmd-knitr.png){fig-alt="A diagram of how a RMD is turned into output formats via knitr and pandoc"}
 
@@ -62,7 +76,6 @@ install.packages(pkg_list)
 
 . . .
 
-We learned from 10 years of literate programming with `knitr` + `rmarkdown`
 
 ![](images/qmd-knitr.jpeg)
 
@@ -92,19 +105,19 @@ Lua filters written by R/Python/Julia developers should be interchangeable betwe
 > Quarto is a command line interface (CLI) that renders plain text formats (`.qmd`, `.rmd`, `.md`) OR mixed formats (`.ipynb`/Jupyter notebook) into static PDF/Word/HTML reports, books, websites, presentations and more
 
 
-## RStudio Visual Editor
-
-![](https://quarto.org/docs/visual-editor/images/visual-editing.png)
-
 
 ## One install, "Batteries included"
 
 -   Quarto is bundled and comes pre-installed with RStudio [v2022.07.1](https://www.rstudio.com/products/rstudio/download/#download) and beyond!
 
-- [more infos](https://quarto.org/docs/computations/r.html#chunk-options)
+- [more infos](https://quarto.org/docs/computations/r.html#installation)
 
 
 ## Rendering
+
+1. Render button
+
+. . .
 
 ![](https://quarto.org/docs/tools/images/rstudio-render.png){fig-alt="A screenshot of the render button in RStudio" width="1000px"}  
 
@@ -134,26 +147,29 @@ quarto_render("document.qmd", output_format = "pdf")
 ```
 :::
 
-## Change your mental model
+# Change Your Mental Model {background-color="#a13c65"}
 
+##
 ::: columns
 ::: {.column width="50%"}
 Source
 
-![](images/word.png){width="450px" fig-alt="A blank Word document"}
+![](images/word.png){width="700px" fig-alt="A blank Word document"}
 :::
 
 ::: {.column width="50%"}
 Output
 
-![](images/word.png){width="450px" fig-alt="A blank Word document"}
+![](images/word.png){width="700px" fig-alt="A blank Word document"}
 :::
 :::
 
-## Change your mental model
-
+##
 ::: columns
 ::: {.column width="50%"}
+Source
+
+
     ---
     title: "ggplot2 demo"
     author: "Norah Jones"
@@ -183,15 +199,22 @@ Output
 :::
 
 ::: {.column width="50%"}
+Output
 ![](https://quarto.org/images/hello-knitr.png)
 :::
 :::
+
+
+# Working with a `.qmd` {background-color="#a13c65"}
+
 
 ## A `.qmd` is a plain text file
 
 . . .
 
--   Metadata (YAML)
+-   Metadata (YAML)  
+
+. . .
 
 :::: {.columns style="font-size: 60px;"}
 
@@ -200,7 +223,6 @@ Output
 format: html
 engine: knitr
 ```
-
 :::
 
 ::: {.column width="55%"}
@@ -209,7 +231,6 @@ engine: knitr
 format: html
 engine: jupyter
 ```
-
 :::
 
 ::::
@@ -217,6 +238,8 @@ engine: jupyter
 . . .
 
 -   Code
+
+. . .
 
 :::: {.columns style="font-size: 60px;"}
 
@@ -266,6 +289,8 @@ This is a sentence with some **bold text**, *italic text* and an
 The [YAML](https://yaml.org/) metadata or header is:
 
 > processed in many stages of the rendering process and can influence the final document in many different ways. It is placed at the very beginning of the document and is read by each of Pandoc, Quarto and `knitr`. Along the way, the information that it contains can affect the code, content, and the rendering process.
+
+
 ## YAML
 
 ::: {style="font-size: 80px;"}
@@ -279,6 +304,114 @@ format:
 ---
 ```
 :::
+
+
+## Metadata: YAML
+
+"Yet Another Markup Language" or "YAML Ain't Markup Language"
+
+``` yaml
+---
+key: value
+---
+```
+
+## Output Options
+
+``` yaml
+---
+format: something
+---
+```
+
+. . .
+
+``` yaml
+---
+format: html
+---
+```
+
+``` yaml
+---
+format: pdf
+---
+```
+
+``` yaml
+---
+format: revealjs
+---
+```
+
+. . .
+
+Then add option arguments!
+
+``` yaml
+---
+format: 
+  html:
+    toc: true
+    code-fold: true
+---
+```
+
+. . .
+
+Sub-options should be below the main format output and spacing matters!
+
+``` yaml
+---
+format: 
+  html:
+    option1: "text"
+    option2: logical
+    option3:
+      - sub-option
+      - sub-option
+    option4: [sub-option1, sub-option2]
+---
+```
+
+## Why YAML?
+
+To avoid manually typing out all the options, every time!
+
+. . .
+
+::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+quarto render document.qmd --to html
+```
+:::
+
+<br>
+
+. . .
+
+::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+quarto render document.qmd --to html -M code fold:true
+```
+:::
+
+<br>
+
+. . .
+
+::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+quarto render document.qmd --to html -M code-fold:true -P alpha:0.2 -P ratio:0.3
+```
+:::
+
+## Quarto workflow
+
+Executing the Quarto Render button in RStudio will call Quarto render in a background job - this will prevent Quarto rendering from cluttering up the R console, and gives you and easy way to stop.
+
+![](images/background-job.png)
+
 
 ## Markdown
 
@@ -359,4 +492,592 @@ plt.show()
 ::: {.column width="50%"}
 ![](images/polar-axis.png){width="650px"}
 :::
+:::
+
+
+## Navigating in the terminal
+
+Because Quarto is a command line interface (CLI), there are times you'll need to use it via the terminal. A great overview of using the command line and navigating files/directories is available via the [Data Carpentries](https://datacarpentry.org/shell-genomics/02-the-filesystem/index.html) or a great interactive tool for understanding commands: <https://tldr.ostera.io>
+
+. . .
+
++------------------------------------+-------------------------------------------------------+
+| Command                            | Action                                                |
++====================================+=======================================================+
+| `pwd`                              | Print name of current working directory               |
++------------------------------------+-------------------------------------------------------+
+| `cd`                               | Change current working directory                      |
++------------------------------------+-------------------------------------------------------+
+| `ls`                               | List directory contents                               |
++------------------------------------+-------------------------------------------------------+
+| `quarto --help`                    | Return `quarto` help docs                             |
++------------------------------------+-------------------------------------------------------+
+| `mkdir howdy`                      | Make a new folder/directory called "howdy"            |
++------------------------------------+-------------------------------------------------------+
+| `rm folder-name/some-file.qmd`     | Delete `some-file.qmd` in the `folder-name` directory |
++------------------------------------+-------------------------------------------------------+
+
+# `r fontawesome::fa("laptop-code", "white")` Your Turn (15 min) {background-color="#447099" transition="slide-in"}
+
+-   In RStudio, create a `qmd` project
+- add some code and some text to the `.qmd` file
+-   Render with the RStudio `Render ->` button
+
+<br>
+
+-   Move to the (integrated) terminal and execute:
+
+-   Render via terminal with `quarto render ....qmd --to pdf`
+
+-   Compare to the HTML version
+
+
+# Using Zotero with R and Quarto {background-color="#a13c65"}
+
+## See instructions [here](https://gsverhoeven.github.io/post/zotero-rmarkdown-csl/)
+
+# Creating APA style papers with R and Quarto {background-color="#a13c65"}
+
+## See instructions [here](https://bookdown.org/yihui/rmarkdown-cookbook/word-template.html)
+
+
+# Code collaboration using Git and GitHub {background-color="#a13c65"}
+
+
+## Advantages of using Git and GitHub  
+
+. . .
+  
+
+::: {style="font-size: 1.2em"}
+- Contribute to open source projects, see [here](https://www.dataschool.io/how-to-contribute-on-github/) (almost all open source projects use GitHub)  🎈
+:::
+
+. . . 
+
+::: {style="font-size: 1.2em"}
+- Showcase your work 🎤 
+:::
+
+. . .
+
+::: {style="font-size: 1.2em"}
+- Track changes across versions  🔍 
+:::
+
+. . .
+
+::: {style="font-size: 1.2em"}
+-  Collaborate on projects 👨‍🔬 👷‍♀️
+:::
+
+. . .
+
+::: {style="font-size: 1.2em"}
+- Various integration options 🤹‍♂️
+    - Amazon and Google Cloud; or use GitHub pages or Netlify to build websites based on your R files 
+:::
+
+## Version Control &mdash; Git and GitHub &mdash; Definitions
+
+::: {.incremental}
+### Git <img src="images/git.png" width="50px" >
+
+- a software that keeps track of versions of a set of files
+- it is *local* to you; the records are kept on your computer
+
+### GitHub <img src="images/github.png" width="70px" >
+
+- a hosting service that can keep the records
+- it is *remote* to you, like Dropbox
+- GitHub is specifically structured to keep records with Git
+:::
+
+##
+
+::: {.incremental}
+### Repository, or repo
+- a set of files whose records are kept together, by Git and/or on GitHub
+
+
+### To commit
+- to take a snapshot of a repository
+- it is local, the records are kept on your computer unless you push
+
+### To push
+- to move a copy of the records from Git to GitHub, from your computer to online server
+- it is like uploading (the new versions of) your files and sub-folders to a website
+:::
+
+##
+
+<figure>
+    <img src="images/repository.png" 
+    width="1000px" 
+    align="center">
+    <figcaption>
+    <a href="https://iqss.github.io/dss-rbuild/version-control.html">Source: https://iqss.github.io/dss-rbuild/version-control.html</a></figcaption>
+</figure>
+
+
+## Version Control &mdash; Git and GitHub &mdash; check setup
+
+. . .
+
+In the **terminal** 📱: 
+
+::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git --version
+```
+:::
+- you should see the Git version  ✅
+
+. . .
+
+In the **terminal** 📱: 
+
+::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git config --global user.name
+```
+:::
+- you should see the Git user name  ✅
+
+<br /> 
+
+. . .
+
+#### 🚫 If these steps did not work, go [here](https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git) and set up Git
+
+#### You just don't want to use the terminal ❓ ▶ For version control in RStudio, see [here](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and particularly [**this video**](https://www.youtube.com/watch?v=megZYkCLMA4)
+
+## Version Control &mdash; Git and GitHub &mdash; connect local with remote
+
+::: columns
+::: {.column width="40%"}
+
+1) Go to GitHub and create a new repository 
+
+<img src="images/new_repo.png" width="500px">
+
+::: 
+::: {.column width="60%"}
+
+
+2) Fill in some info, create a public repository 
+<img src="images/testrepo.png" width="800px">
+
+::: 
+:::
+
+## 
+
+3) Follow the steps in Option 1: *"…create a new repository on the command line"*
+
+<img src="images/push.png" width="900px">
+
+
+## 
+
+
+4) In the **terminal** 📱, navigate to your Quarto project folder: 
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+cd project_folder
+```
+::::
+
+<br/>
+
+. . .
+
+5) initialize a git repo on your local machine:
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git init
+```
+::::
+
+<br/>
+
+. . .
+
+6) create content you can then add in the next step (e.g., README file):
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+touch README.md
+```
+::::
+
+##
+
+7) stage all the content in that folder to be added:
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git add .
+```
+::::
+
+
+<br/>
+
+. . .
+
+8) stage all the content in that folder to be committed: 
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git commit -m "add empty readme"
+```
+::::
+
+
+##
+
+9) connect local repo to the remote repo. Substitute the link with your repo URL!
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git remote add origin https://github.com/AnneOkk/testrepo.git
+```
+::::
+
+
+<br/>
+
+. . .
+
+10) push all the content from Git to GitHub:
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git push origin master
+```
+::::
+
+
+<br/>
+
+. . .
+
+<img src="images/success.png" width="800px"/>
+
+
+### 🎈 The pushed files should appear in your GitHub repository 🎈
+
+
+## Version Control &mdash; Git and GitHub &mdash; .gitignore
+
+::: columns
+::: {.column width="40%"}
+
+- `.gitignore` file specifies which file(s) and/or folder(s) should be excluded from version control
+
+- lists one item per line; each line has a pattern, which determines whether files should be ignored 
+
+- see [gitignore documentation](https://git-scm.com/docs/gitignore) for more info on the different patterns 
+
+- reasons to exclude files from being pushed include:
+  - personal information others should not see (e.g., credential files)
+  - no rights to share (e.g., certain data files)
+  - outputs that may be re-created (e.g., `outputs.pdf`)
+
+
+::: 
+::: {.column width="60%"}
+
+<img src="images/gitignore.png" width="900px"/>
+
+:::
+:::
+
+
+## Version Control &mdash; Git and GitHub &mdash; collaborating
+
+
+### Imagine... 🤔
+
+. . .
+
+- you work in a team of data scientists/ data enthusiastic researchers 🧙🧙🏿🧙‍♀️🧙🏻‍♀️
+
+. . .
+
+- you want to be able to work together on a data analysis project 👨‍💻👩‍💻 👨‍💻👩‍💻
+
+. . .
+
+- you want to keep track of what the others do and finally merge individual contributions into one overall project  ✨ 💾 ✨
+
+. . .
+
+#### But how ❓ 🤷 
+
+
+# Version Control &mdash; Git and GitHub &mdash; collaborating {background-color="#a13c65"}
+
+## Scenario 1 - you are owner/ collaborator
+
+### ... first things first!
+
+1) Go to the GitHub repository you are working on as a team 
+
+. . .
+
+2) In the terminal 📱, navigate to where you want to store the project files and type:
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git clone https://github.com/AnneOkk/testrepo.git
+```
+::::
+
+. . .
+
+<img src="images/clone.png" width="800px"/>
+
+##
+
+3) Next, you would always want to make sure that you are up to date with what has changed in the remote repository
+
+. . .
+
+In the 📱 terminal 📱, type:
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git pull origin master
+```
+::::
+
+. . .
+
+<br/>
+
+4) Create a new branch to add changes that belong to a novel feature you are working on (this prevents messing up the master branch)
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git checkout -b "cool-feature"
+```
+::::
+
+. . .
+
+<br/>
+
+5) Now make some changes (e.g., add the new cool feature to the code)
+
+##
+
+6) Add and commit the files 
+...through the usual workflow 😴
+
+:::: {style="font-size: 50px;"}
+```{.bash filename="terminal"}
+git add .
+git commit -m "new feature file added"
+```
+::::
+
+. . .
+
+<br/>
+
+ 🚧 👀 BUT you push the changes to the newly created branch to prevent messing up the master branch! 👀 🚧
+
+:::: {style="font-size: 50px;"}
+```{.bash filename="terminal"}
+git push origin cool-feature
+```
+::::
+
+. . .
+
+<img src="images/pull.png" width="800px"/>
+
+7) On GitHub, you create a pull request
+
+. . .
+
+8) Once all issues are resolved, your changes will be merged into the master branch 🥳 
+
+
+## 
+... But what if some issues remain unresolved?  👆*"You forgot to add code to read in the data!"* 🤔
+
+. . .
+
+<br/>
+
+If the branch has not been removed, you may add smaller changes (on the same feature) through
+
+:::: {style="font-size: 50px;"}
+```{.bash filename="terminal"}
+git add .
+git commit -m "added data reader"
+git push origin branch-name
+```
+::::
+
+. . .
+
+<br/>
+
+❗ BUT if some time has passed and/or the addition is major ⏩ Checkout to  master branch:
+
+:::: {style="font-size: 50px;"}
+```{.bash filename="terminal"}
+git checkout master
+```
+::::
+
+. . .
+
+Pull all changes that happened in the mean time:
+
+:::: {style="font-size: 50px;"}
+```{.bash filename="terminal"}
+git pull origin master
+```
+::::
+
+. . .
+
+Checkout a new branch for the missing feature:
+
+:::: {style="font-size: 50px;"}
+```{.bash filename="terminal"}
+git checkout -b data-reader
+```
+::::
+
+
+. . .
+
+Make the necessary changes!
+
+. . .
+
+... And then, the usual workflow (don't forget to push to the new branch!)
+
+
+## Scenario 2 - you want to contribute to an open science project
+
+. . .
+
+1) In GitHub, navigate to the [project](https://github.com/AnneAlterEgo/Testrepo/tree/main) you want to contribute to 
+
+. . .
+
+2) Fork the repo!
+
+<img src="images/fork.png" width="700px"/>
+
+. . .
+
+3) Clone the new repo! 
+ 
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git clone https://github.com/AnneOkk/Testrepo-1.git
+```
+::::
+
+. . .
+
+4) Make your changes and then add, commit, and push to your master branch 
+
+. . .
+
+## 
+
+5) On GitHub, go back to the original repository and create a pull request. 
+
+You may need to click "compare across forks"
+
+<img src="images/successful_pull.png" width="700px"/>
+
+## ... On the other side 
+
+<img src="images/review_pull.png" width="150px"/>
+
+Open and review the pull request! 🔍
+
+If you're happy with the changes, merge! 👍
+
+Otherwise, request additional changes in comments. 💬
+
+. . .
+
+### 🎊 Yey, you're all set to contribute to open science projects on GitHub! 🎊
+
+
+# `r fontawesome::fa("laptop-code", "white")` Your Turn (15 min) {background-color="#447099" transition="slide-in"}
+
+1.  Connect your local R project folder with a GitHub repository
+
+2. Change some of the content in R, save, and then push the changes to GitHub
+
+:::: {style="font-size: 70px;"}
+```{.bash filename="terminal"}
+git add .
+git commit -m "senseful commit message that describes the change(s)"
+git push origin master
+```
+::::
+
+<br /> 
+
+3. [OPTIONAL] Create a pull request for your own repository and merge the changes into the master branch 
+
+4. [OPTIONAL] One team member creates a pull request for the other team member's repository (first fork and clone); the repo owner merges the changes into her/his master (or main) branch. 
+
+
+# Integrating osf with GitHub {background-color="#a13c65"}
+
+## Integrating osf with GitHub
+
+1) Create your osf project 
+
+. . .
+
+2) Enable GitHub in Add-ons
+
+<img src="images/osf_int.png" width="850px"/>
+
+##
+
+3) Import GitHub Account
+
+<img src="images/osf_imp.png" width="600px"/>
+
+## 
+
+### 4. Select Repo
+
+<img src="images/osf_sel.png" width="800px"/>
+
+. . .
+
+### 🎊 Yey, you're all set to connect your GitHub content to osf! 🎊
+
+
+# ...And there is so much more! {background-color="#a13c65"}
+
+::: {style="text-align: right;"}
+![](images/m3.jpeg){height="650px"}
+
+Find me at:
+
+`r fa("twitter")` [\@AnKaKleine](https://twitter.com/ankakleine?lang=en)
+
+`r fa("github")` [\@AnneOkk](https://github.com/AnneOkk)
+
+`r fa("link")` [http://annekathrinkleine.com/](https://annekathrinkleine.com//)
 :::
