@@ -457,7 +457,9 @@
 <div class="fragment">
 <p><img data-src="https://quarto.org/docs/tools/images/rstudio-render.png" alt="A screenshot of the render button in RStudio" width="1000"></p>
 </div>
-<div class="fragment">
+</section>
+<section id="rendering-1" class="slide level2 center">
+<h2>Rendering</h2>
 <ol start="2" type="1">
 <li>System shell via <code>quarto render</code></li>
 </ol>
@@ -471,8 +473,30 @@
 <span id="cb2-3"><a href="#cb2-3"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> docx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+</section>
+<section>
+<section id="quick-excourse-power-shell-and-terminal" class="title-slide slide level1 center" data-background-color="#DADEFD">
+<h1>Quick excourse: <em>Power Shell</em> and <em>Terminal</em></h1>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><a href="https://learn.microsoft.com/en-us/powershell/scripting/discover-powershell?view=powershell-7.2">Windows Power Shell</a></p>
+<ul>
+<li>Click Start, type PowerShell, right-click Windows PowerShell, and then click Run as administrator</li>
+</ul>
+<p><img data-src="images/power_shell.png" width="600"></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/de/f/f6/Windowspowershell_unter_Windows_8.png">Image source: Wikipedia</a></p>
+</div><div class="column" style="width:50%;">
+<p><a href="https://support.apple.com/en-gb/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac">Mac Terminal</a></p>
+<ul>
+<li>Click the Launchpad icon in the Dock, type Terminal in the search field, then click Terminal</li>
+</ul>
+<p><img data-src="images/terminal.png" width="700"></p>
+<p><a href="https://en.wikipedia.org/wiki/Terminal_(macOS)#/media/File:Appleterminal2.png">Image source: Wikipedia</a></p>
 </div>
-<div class="fragment">
+</div>
+</section>
+<section id="rendering-2" class="slide level2 center">
+<h2>Rendering</h2>
 <ol start="3" type="1">
 <li>R console via <code>quarto</code> R package</li>
 </ol>
@@ -483,8 +507,7 @@
 <span id="cb3-3"><a href="#cb3-3"></a><span class="fu">quarto_render</span>(<span class="st">"document.qmd"</span>, <span class="at">output_format =</span> <span class="st">"pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</div>
-</section>
+</section></section>
 <section>
 <section id="change-your-mental-model" class="title-slide slide level1 center" data-background-color="#a13c65">
 <h1>Change Your Mental Model</h1>
@@ -549,50 +572,32 @@
 <ul>
 <li>Metadata (YAML)</li>
 </ul>
-</div>
-<div class="fragment">
-<div class="columns" style="font-size: 60px;">
-<div class="column" style="width:45%;">
+<div style="font-size: 60px;">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">engine</span><span class="kw">:</span><span class="at"> knitr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:55%;">
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">engine</span><span class="kw">:</span><span class="at"> jupyter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </div>
 </div>
 <div class="fragment">
 <ul>
 <li>Code</li>
 </ul>
-</div>
-<div class="fragment">
-<div class="columns" style="font-size: 60px;">
-<div class="column" style="width:45%;">
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown code number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>mtcars <span class="sc">|&gt;</span> </span>
-<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span> </span>
-<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(mpg))</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:55%;">
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown code number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="im">from</span> siuba <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>(mtcars</span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="op">&gt;&gt;</span> group_by(_.cyl)</span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="op">&gt;&gt;</span> summarize(avg_mpg <span class="op">=</span> _.mpg.mean()))</span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div style="font-size: 60px;">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown code number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>mtcars <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(mpg))</span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
 <ul>
 <li>Text</li>
 </ul>
-<div style="font-size: 70px;">
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu"># Heading 1</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>This is a sentence with some **bold text**, *italic text* and an </span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="al">![image](image.png)</span>{fig-alt="Alt text for this image"}.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 60px;">
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu"># Heading 1</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>This is a sentence with some **bold text**, *italic text* and an </span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="al">![image](image.png)</span>{fig-alt="Alt text for this image"}.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -606,59 +611,61 @@
 <section id="yaml" class="slide level2 center">
 <h2>YAML</h2>
 <div style="font-size: 80px;">
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="pp">---</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Document"</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1"></a><span class="pp">---</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Document"</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="metadata-yaml-1" class="slide level2 center">
-<h2>Metadata: YAML</h2>
-<p>“Yet Another Markup Language” or “YAML Ain’t Markup Language”</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1"></a><span class="pp">---</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">key</span><span class="kw">:</span><span class="at"> value</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="output-options" class="slide level2 center">
 <h2>Output Options</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-size: 60px;">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1"></a><span class="pp">---</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> something</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="pp">---</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1"></a><span class="pp">---</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pdf</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="pp">---</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> something</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1"></a><span class="pp">---</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1"></a><span class="pp">---</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pdf</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1"></a><span class="pp">---</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <div class="fragment">
 <p>Then add option arguments!</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1"></a><span class="pp">---</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 60px;">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1"></a><span class="pp">---</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <div class="fragment">
 <p>Sub-options should be below the main format output and spacing matters!</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1"></a><span class="pp">---</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="at">    </span><span class="fu">option1</span><span class="kw">:</span><span class="at"> </span><span class="st">"text"</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="at">    </span><span class="fu">option2</span><span class="kw">:</span><span class="at"> logical</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="at">    </span><span class="fu">option3</span><span class="kw">:</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> sub-option</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> sub-option</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="at">    </span><span class="fu">option4</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">sub-option1</span><span class="kw">,</span><span class="at"> sub-option2</span><span class="kw">]</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 55px;">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1"></a><span class="pp">---</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="at">    </span><span class="fu">option1</span><span class="kw">:</span><span class="at"> </span><span class="st">"text"</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="at">    </span><span class="fu">option2</span><span class="kw">:</span><span class="at"> logical</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="at">    </span><span class="fu">option3</span><span class="kw">:</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> sub-option</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> sub-option</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="at">    </span><span class="fu">option4</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">sub-option1</span><span class="kw">,</span><span class="at"> sub-option2</span><span class="kw">]</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </section>
 <section id="why-yaml" class="slide level2 center">
@@ -670,7 +677,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -681,7 +688,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html <span class="at">-M</span> code fold:true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html <span class="at">-M</span> code fold:true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -692,7 +699,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html <span class="at">-M</span> code-fold:true <span class="at">-P</span> alpha:0.2 <span class="at">-P</span> ratio:0.3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html <span class="at">-M</span> code-fold:true <span class="at">-P</span> alpha:0.2 <span class="at">-P</span> ratio:0.3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -708,8 +715,11 @@
 <p>Quarto is based on Pandoc and uses its variation of markdown as its underlying document syntax. Pandoc markdown is an extended and slightly revised version of John Gruber’s <a href="https://daringfireball.net/projects/markdown/">Markdown</a> syntax. . . .</p>
 </blockquote>
 <blockquote>
-<p>Markdown is a plain text format that is designed to be easy to write, and, even more importantly, easy to read ## Text Formatting</p>
+<p>Markdown is a plain text format that is designed to be easy to write, and, even more importantly, easy to read</p>
 </blockquote>
+</section>
+<section id="text-formatting" class="slide level2 center">
+<h2>Text Formatting</h2>
 <table style="width:94%;">
 <colgroup>
 <col style="width: 50%">
@@ -784,20 +794,18 @@
 </section>
 <section id="code" class="slide level2 center">
 <h2>Code</h2>
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1"></a><span class="in">```{r}</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="co">#| output-location: column</span></span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="co">#| label: fig-airquality</span></span>
-<span id="cb31-4"><a href="#cb31-4"></a><span class="co">#| fig-cap: Temperature and ozone level.</span></span>
-<span id="cb31-5"><a href="#cb31-5"></a><span class="co">#| warning: false</span></span>
-<span id="cb31-6"><a href="#cb31-6"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb31-7"><a href="#cb31-7"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(Temp, Ozone)) <span class="sc">+</span> </span>
-<span id="cb31-8"><a href="#cb31-8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb31-9"><a href="#cb31-9"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span></span>
-<span id="cb31-10"><a href="#cb31-10"></a>)</span>
-<span id="cb31-11"><a href="#cb31-11"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
+<div style="font-size: 55px;">
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="co">#| output-location: column</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="co">#| label: fig-airquality</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="co">#| fig-cap: Temperature and ozone level.</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="co">#| warning: false</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(Temp, Ozone)) <span class="sc">+</span> </span>
+<span id="cb28-8"><a href="#cb28-8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb28-9"><a href="#cb28-9"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>)</span>
+<span id="cb28-10"><a href="#cb28-10"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-airquality" class="quarto-figure quarto-figure-center">
 <figure>
@@ -808,28 +816,29 @@
 </div>
 </div>
 </div>
+<p>See <a href="https://quarto.org/docs/computations/execution-options.html">here</a> for the different execution options!</p>
 </section>
 <section id="code-more-than-just-r" class="slide level2 center">
 <h2>Code, more than just R</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1"></a><span class="in">```{python}</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="co">#| eval: false</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a><span class="co">#| label: fig-polar</span></span>
-<span id="cb32-4"><a href="#cb32-4"></a><span class="co">#| fig-cap: "A line plot on a polar axis"</span></span>
-<span id="cb32-5"><a href="#cb32-5"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb32-6"><a href="#cb32-6"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb32-7"><a href="#cb32-7"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
-<span id="cb32-8"><a href="#cb32-8"></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
-<span id="cb32-9"><a href="#cb32-9"></a>fig, ax <span class="op">=</span> plt.subplots(</span>
-<span id="cb32-10"><a href="#cb32-10"></a>  subplot_kw <span class="op">=</span> {<span class="st">'projection'</span>: <span class="st">'polar'</span>} </span>
-<span id="cb32-11"><a href="#cb32-11"></a>)</span>
-<span id="cb32-12"><a href="#cb32-12"></a>ax.plot(theta, r)</span>
-<span id="cb32-13"><a href="#cb32-13"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
-<span id="cb32-14"><a href="#cb32-14"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb32-15"><a href="#cb32-15"></a>plt.show()</span>
-<span id="cb32-16"><a href="#cb32-16"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1"></a><span class="in">```{python}</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="co">#| eval: false</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="co">#| label: fig-polar</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="co">#| fig-cap: "A line plot on a polar axis"</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb29-7"><a href="#cb29-7"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
+<span id="cb29-8"><a href="#cb29-8"></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
+<span id="cb29-9"><a href="#cb29-9"></a>fig, ax <span class="op">=</span> plt.subplots(</span>
+<span id="cb29-10"><a href="#cb29-10"></a>  subplot_kw <span class="op">=</span> {<span class="st">'projection'</span>: <span class="st">'polar'</span>} </span>
+<span id="cb29-11"><a href="#cb29-11"></a>)</span>
+<span id="cb29-12"><a href="#cb29-12"></a>ax.plot(theta, r)</span>
+<span id="cb29-13"><a href="#cb29-13"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
+<span id="cb29-14"><a href="#cb29-14"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb29-15"><a href="#cb29-15"></a>plt.show()</span>
+<span id="cb29-16"><a href="#cb29-16"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <p><img data-src="images/polar-axis.png" width="650"></p>
@@ -883,7 +892,7 @@
 <section id="your-turn-15-min" class="title-slide slide level1 center" data-background-color="#447099" data-transition="slide-in">
 <h1><svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M128 96h384v256h64V80C576 53.63 554.4 32 528 32h-416C85.63 32 64 53.63 64 80V352h64V96zM624 384h-608C7.25 384 0 391.3 0 400V416c0 35.25 28.75 64 64 64h512c35.25 0 64-28.75 64-64v-16C640 391.3 632.8 384 624 384zM365.9 286.2C369.8 290.1 374.9 292 380 292s10.23-1.938 14.14-5.844l48-48c7.812-7.813 7.812-20.5 0-28.31l-48-48c-7.812-7.813-20.47-7.813-28.28 0c-7.812 7.813-7.812 20.5 0 28.31l33.86 33.84l-33.86 33.84C358 265.7 358 278.4 365.9 286.2zM274.1 161.9c-7.812-7.813-20.47-7.813-28.28 0l-48 48c-7.812 7.813-7.812 20.5 0 28.31l48 48C249.8 290.1 254.9 292 260 292s10.23-1.938 14.14-5.844c7.812-7.813 7.812-20.5 0-28.31L240.3 224l33.86-33.84C281.1 182.4 281.1 169.7 274.1 161.9z"></path></svg> Your Turn (15 min)</h1>
 <ul>
-<li>In RStudio, create a <code>qmd</code> project</li>
+<li>In RStudio, create a <a href="https://quarto.org/docs/projects/quarto-projects.html"><code>qmd</code> project</a></li>
 <li>add some code and some text to the <code>.qmd</code> file</li>
 <li>Render with the RStudio <code>Render -&gt;</code> button</li>
 </ul>
@@ -902,7 +911,8 @@
 </section>
 <section id="see-instructions-here" class="slide level2 center">
 <h2>See instructions <a href="https://gsverhoeven.github.io/post/zotero-rmarkdown-csl/">here</a></h2>
-</section></section>
+
+<img data-src="images/zotero.png" class="r-stretch"></section></section>
 <section>
 <section id="creating-apa-style-papers-with-r-and-quarto" class="title-slide slide level1 center" data-background-color="#a13c65">
 <h1>Creating APA style papers with R and Quarto</h1>
@@ -910,7 +920,8 @@
 </section>
 <section id="see-instructions-here-1" class="slide level2 center">
 <h2>See instructions <a href="https://bookdown.org/yihui/rmarkdown-cookbook/word-template.html">here</a></h2>
-</section></section>
+
+<img data-src="images/word_int.png" width="250" class="r-stretch"></section></section>
 <section>
 <section id="code-collaboration-using-git-and-github" class="title-slide slide level1 center" data-background-color="#a13c65">
 <h1>Code collaboration using Git and GitHub</h1>
@@ -995,11 +1006,19 @@
 <section id="section-3" class="slide level2 center">
 <h2></h2>
 <figure>
-<img src="images/repository.png" width="1000px" align="center">
+<img src="images/repository.png" width="1300px" align="center">
 <figcaption>
 <a href="https://iqss.github.io/dss-rbuild/version-control.html">Source: https://iqss.github.io/dss-rbuild/version-control.html</a>
 </figcaption>
 </figure>
+</section></section>
+<section>
+<section id="quick-excourse-setting-up-git-and-github" class="title-slide slide level1 center" data-background-color="#DADEFD">
+<h1>Quick excourse: <em>Setting up Git and GitHub</em></h1>
+<ol type="1">
+<li><p>Read the instructions in the <a href="https://happygitwithr.com/">Happy Git with R Book</a> and the <a href="https://docs.github.com/en/get-started/quickstart/set-up-git">official GitHub guides</a> to install Git. <a href="https://www.computerhope.com/issues/ch001927.htm">Installation instructions for Windows users</a></p></li>
+<li><p><a href="https://happygitwithr.com/github-acct.html">Register a GitHub account</a></p></li>
+</ol>
 </section>
 <section id="version-control-git-and-github-check-setup" class="slide level2 center">
 <h2>Version Control — Git and GitHub — check setup</h2>
@@ -1010,7 +1029,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <ul>
@@ -1024,7 +1043,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <ul>
@@ -1069,7 +1088,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1"></a><span class="bu">cd</span> project_folder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1"></a><span class="bu">cd</span> project_folder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -1082,7 +1101,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">git</span> init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">git</span> init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -1096,7 +1115,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">touch</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">touch</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1111,7 +1130,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">git</span> add .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">git</span> add .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -1124,7 +1143,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"add empty readme"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"add empty readme"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1139,7 +1158,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">git</span> remote add origin https://github.com/AnneOkk/testrepo.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">git</span> remote add origin https://github.com/AnneOkk/testrepo.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -1152,7 +1171,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">git</span> push origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">git</span> push origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -1160,26 +1179,6 @@
 <div class="fragment">
 <p><img src="images/success.png" width="800px"></p>
 <h3 id="the-pushed-files-should-appear-in-your-github-repository">🎈 The pushed files should appear in your GitHub repository 🎈</h3>
-</div>
-</section>
-<section id="version-control-git-and-github-.gitignore" class="slide level2 center">
-<h2>Version Control — Git and GitHub — .gitignore</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<ul>
-<li><p><code>.gitignore</code> file specifies which file(s) and/or folder(s) should be excluded from version control</p></li>
-<li><p>lists one item per line; each line has a pattern, which determines whether files should be ignored</p></li>
-<li><p>see <a href="https://git-scm.com/docs/gitignore">gitignore documentation</a> for more info on the different patterns</p></li>
-<li><p>reasons to exclude files from being pushed include:</p>
-<ul>
-<li>personal information others should not see (e.g., credential files)</li>
-<li>no rights to share (e.g., certain data files)</li>
-<li>outputs that may be re-created (e.g., <code>outputs.pdf</code>)</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:60%;">
-<p><img src="images/gitignore.png" width="900px"></p>
-</div>
 </div>
 </section>
 <section id="version-control-git-and-github-collaborating" class="slide level2 center">
@@ -1211,7 +1210,6 @@
 </section>
 <section id="scenario-1---you-are-owner-collaborator" class="slide level2 center">
 <h2>Scenario 1 - you are owner/ collaborator</h2>
-<h3 id="first-things-first">… first things first!</h3>
 <ol type="1">
 <li>Go to the GitHub repository you are working on as a team</li>
 </ol>
@@ -1219,12 +1217,12 @@
 <ol start="2" type="1">
 <li>In the terminal 📱, navigate to where you want to store the project files and type:</li>
 </ol>
-<div style="font-size: 70px;">
+<div style="font-size: 60px;">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">git</span> clone https://github.com/AnneOkk/testrepo.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">git</span> clone https://github.com/AnneOkk/testrepo.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1239,12 +1237,12 @@
 </ol>
 <div class="fragment">
 <p>In the 📱 terminal 📱, type:</p>
-<div style="font-size: 70px;">
+<div style="font-size: 60px;">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb43"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">git</span> pull origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">git</span> pull origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1258,7 +1256,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> <span class="st">"cool-feature"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> <span class="st">"cool-feature"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1274,102 +1272,95 @@
 <ol start="6" type="1">
 <li>Add and commit the files …through the usual workflow 😴</li>
 </ol>
-<div style="font-size: 50px;">
+<div style="font-size: 60px;">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">git</span> add .</span>
-<span id="cb45-2"><a href="#cb45-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"new feature file added"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">git</span> add .</span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"new feature file added"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
 <p><br></p>
 <p>🚧 👀 BUT you push the changes to the newly created branch to prevent messing up the master branch! 👀 🚧</p>
-<div style="font-size: 50px;">
+<div style="font-size: 60px;">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">git</span> push origin cool-feature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">git</span> push origin cool-feature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <div class="fragment">
-<p><img src="images/pull.png" width="800px"></p>
+<p><img src="images/pull.png" width="1000px"></p>
+</div>
+</section>
+<section id="section-10" class="slide level2 center">
+<h2></h2>
 <ol start="7" type="1">
-<li>On GitHub, you create a pull request</li>
+<li>On GitHub, create a pull request</li>
 </ol>
-</div>
-<div class="fragment">
+
+<img src="images/pull_req.png" width="700px" class="r-stretch"><div class="fragment">
+<p><br></p>
 <ol start="8" type="1">
 <li>Once all issues are resolved, your changes will be merged into the master branch 🥳</li>
 </ol>
 </div>
 </section>
-<section id="section-10" class="slide level2 center">
+<section id="section-11" class="slide level2 center">
 <h2></h2>
-<p>… But what if some issues remain unresolved? 👆<em>“You forgot to add code to read in the data!”</em> 🤔</p>
-<div class="fragment">
-<p><br></p>
-<p>If the branch has not been removed, you may add smaller changes (on the same feature) through</p>
-<div style="font-size: 50px;">
+<ol start="9" type="1">
+<li>Checkout to master branch</li>
+</ol>
+<div style="font-size: 60px;">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb47"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">git</span> add .</span>
-<span id="cb47-2"><a href="#cb47-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"added data reader"</span></span>
-<span id="cb47-3"><a href="#cb47-3"></a><span class="fu">git</span> push origin branch-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">git</span> checkout master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
 <p><br></p>
-<p>❗ BUT if some time has passed and/or the addition is major ⏩ Checkout to master branch:</p>
-<div style="font-size: 50px;">
+<ol start="10" type="1">
+<li>Pull changes</li>
+</ol>
+<div style="font-size: 60px;">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">git</span> checkout master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">git</span> pull origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <div class="fragment">
-<p>Pull all changes that happened in the mean time:</p>
-<div style="font-size: 50px;">
+<p><br></p>
+<ol start="11" type="1">
+<li>Checkout a new branch for missing feature.</li>
+</ol>
+<div style="font-size: 60px;">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb49"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">git</span> pull origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> data-reader</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</div>
-<div class="fragment">
-<p>Checkout a new branch for the missing feature:</p>
-<div style="font-size: 50px;">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>terminal</strong></pre>
-</div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> data-reader</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<p><br></p>
 </div>
 <div class="fragment">
-<p>Make the necessary changes!</p>
-</div>
-<div class="fragment">
-<p>… And then, the usual workflow (don’t forget to push to the new branch!)</p>
+<h3 id="and-so-on">… And so on …</h3>
 </div>
 </section>
 <section id="scenario-2---you-want-to-contribute-to-an-open-science-project" class="slide level2 center">
 <h2>Scenario 2 - you want to contribute to an open science project</h2>
 <div class="fragment">
 <ol type="1">
-<li>In GitHub, navigate to the <a href="https://github.com/AnneAlterEgo/Testrepo/tree/main">project</a> you want to contribute to</li>
+<li>In GitHub, navigate to the project you want to contribute to</li>
 </ol>
 </div>
 <div class="fragment">
@@ -1387,7 +1378,7 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb51"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">git</span> clone https://github.com/AnneOkk/Testrepo-1.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">git</span> clone https://github.com/AnneOkk/Testrepo-1.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1397,7 +1388,7 @@
 </ol>
 </div>
 </section>
-<section id="section-11" class="slide level2 center">
+<section id="section-12" class="slide level2 center">
 <h2></h2>
 <ol start="5" type="1">
 <li>On GitHub, go back to the original repository and create a pull request.</li>
@@ -1405,19 +1396,21 @@
 <p>You may need to click “compare across forks”</p>
 
 <img src="images/successful_pull.png" width="700px" class="r-stretch"></section>
-<section id="on-the-other-side" class="slide level2 center">
-<h2>… On the other side</h2>
+<section id="on-the-other-side-repo-owner" class="slide level2 center">
+<h2>… On the other side (repo owner)</h2>
 
-<img src="images/review_pull.png" width="150px" class="r-stretch"><p>Open and review the pull request! 🔍</p>
+<img data-src="images/review_pull.png" width="250" class="r-stretch"><p>Open and review the pull request! 🔍</p>
 <p>If you’re happy with the changes, merge! 👍</p>
 <p>Otherwise, request additional changes in comments. 💬</p>
 <div class="fragment">
+<p><br></p>
 <h3 id="yey-youre-all-set-to-contribute-to-open-science-projects-on-github">🎊 Yey, you’re all set to contribute to open science projects on GitHub! 🎊</h3>
 </div>
 </section></section>
 <section id="your-turn-15-min-1" class="title-slide slide level1 center" data-background-color="#447099" data-transition="slide-in">
 <h1><svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M128 96h384v256h64V80C576 53.63 554.4 32 528 32h-416C85.63 32 64 53.63 64 80V352h64V96zM624 384h-608C7.25 384 0 391.3 0 400V416c0 35.25 28.75 64 64 64h512c35.25 0 64-28.75 64-64v-16C640 391.3 632.8 384 624 384zM365.9 286.2C369.8 290.1 374.9 292 380 292s10.23-1.938 14.14-5.844l48-48c7.812-7.813 7.812-20.5 0-28.31l-48-48c-7.812-7.813-20.47-7.813-28.28 0c-7.812 7.813-7.812 20.5 0 28.31l33.86 33.84l-33.86 33.84C358 265.7 358 278.4 365.9 286.2zM274.1 161.9c-7.812-7.813-20.47-7.813-28.28 0l-48 48c-7.812 7.813-7.812 20.5 0 28.31l48 48C249.8 290.1 254.9 292 260 292s10.23-1.938 14.14-5.844c7.812-7.813 7.812-20.5 0-28.31L240.3 224l33.86-33.84C281.1 182.4 281.1 169.7 274.1 161.9z"></path></svg> Your Turn (15 min)</h1>
-<ol type="1">
+<ol start="0" type="1">
+<li><p>[Get Git and GitHub up and running]</p></li>
 <li><p>Connect your local R project folder with a GitHub repository</p></li>
 <li><p>Change some of the content in R, save, and then push the changes to GitHub</p></li>
 </ol>
@@ -1426,15 +1419,14 @@
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb52"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">git</span> add .</span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"senseful commit message that describes the change(s)"</span></span>
-<span id="cb52-3"><a href="#cb52-3"></a><span class="fu">git</span> push origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">git</span> add .</span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"senseful commit message that describes the change(s)"</span></span>
+<span id="cb48-3"><a href="#cb48-3"></a><span class="fu">git</span> push origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
 <ol start="3" type="1">
-<li><p>[OPTIONAL] Create a pull request for your own repository and merge the changes into the master branch</p></li>
-<li><p>[OPTIONAL] One team member creates a pull request for the other team member’s repository (first fork and clone); the repo owner merges the changes into her/his master (or main) branch.</p></li>
+<li>[OPTIONAL] Create a pull request for your own repository and merge the changes into the master branch</li>
 </ol>
 </section>
 
@@ -1455,23 +1447,23 @@
 <p><img src="images/osf_int.png" width="850px"></p>
 </div>
 </section>
-<section id="section-12" class="slide level2 center">
+<section id="section-13" class="slide level2 center">
 <h2></h2>
 <ol start="3" type="1">
 <li>Import GitHub Account</li>
 </ol>
 
 <img src="images/osf_imp.png" width="600px" class="r-stretch"></section>
-<section id="section-13" class="slide level2 center">
+<section id="section-14" class="slide level2 center">
 <h2></h2>
 <h3 id="select-repo">4. Select Repo</h3>
 
 <img src="images/osf_sel.png" width="800px" class="r-stretch"><h3 id="yey-youre-all-set-to-connect-your-github-content-to-osf">🎊 Yey, you’re all set to connect your GitHub content to osf! 🎊</h3>
-</section></section>
-<section id="and-there-is-so-much-more" class="title-slide slide level1 center" data-background-color="#a13c65">
-<h1>…And there is so much more!</h1>
+</section>
+<section id="and-there-is-so-much-more" class="slide level2 center" data-background-color="#a13c65">
+<h2>…And there is so much more!</h2>
 <div style="text-align: right;">
-<p><img data-src="images/m3.jpeg" height="650"></p>
+<p><img data-src="images/m3.jpeg" height="550"></p>
 <p>Find me at:</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.4 151.7c.325 4.548 .325 9.097 .325 13.65 0 138.7-105.6 298.6-298.6 298.6-59.45 0-114.7-17.22-161.1-47.11 8.447 .974 16.57 1.299 25.34 1.299 49.06 0 94.21-16.57 130.3-44.83-46.13-.975-84.79-31.19-98.11-72.77 6.498 .974 12.99 1.624 19.82 1.624 9.421 0 18.84-1.3 27.61-3.573-48.08-9.747-84.14-51.98-84.14-102.1v-1.299c13.97 7.797 30.21 12.67 47.43 13.32-28.26-18.84-46.78-51.01-46.78-87.39 0-19.49 5.197-37.36 14.29-52.95 51.65 63.67 129.3 105.3 216.4 109.8-1.624-7.797-2.599-15.92-2.599-24.04 0-57.83 46.78-104.9 104.9-104.9 30.21 0 57.5 12.67 76.67 33.14 23.72-4.548 46.46-13.32 66.6-25.34-7.798 24.37-24.37 44.83-46.13 57.83 21.12-2.273 41.58-8.122 60.43-16.24-14.29 20.79-32.16 39.31-52.63 54.25z"></path></svg> <a href="https://twitter.com/ankakleine?lang=en">@AnKaKleine</a></p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg> <a href="https://github.com/AnneOkk">@AnneOkk</a></p>
@@ -1481,7 +1473,7 @@
 <div class="footer footer-default">
 <p><a href="https://quarto.org" class="uri">https://quarto.org</a></p>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -1508,7 +1500,7 @@
       // https://revealjs.com/config/
       Reveal.initialize({
 'controlsAuto': true,
-'previewLinksAuto': true,
+'previewLinksAuto': false,
 'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
@@ -1638,7 +1630,7 @@
         hideCursorTime: 5000,
 
         // Opens links in an iframe preview overlay
-        previewLinks: false,
+        previewLinks: true,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
         transition: 'none',

@@ -10,7 +10,7 @@ format:
     height: 1200
     chalkboard: 
       buttons: false
-    preview-links: auto
+    preview-links: true
     footer: <https://quarto.org>
     theme: [simple, custom.scss]
     logo: "/images/logoclin.png"
@@ -97,7 +97,8 @@ install.packages(pkg_list)
 
 ![](https://quarto.org/docs/tools/images/rstudio-render.png){fig-alt="A screenshot of the render button in RStudio" width="1000px"}  
 
-. . .
+
+## Rendering
 
 2.  System shell via `quarto render`
 
@@ -109,7 +110,32 @@ quarto render document.qmd --to docx
 ```
 :::
 
-. . .
+
+# Quick excourse: *Power Shell* and *Terminal* {background-color="#DADEFD"}
+
+:::: columns
+::: {.column width="50%"}
+[Windows Power Shell](https://learn.microsoft.com/en-us/powershell/scripting/discover-powershell?view=powershell-7.2) 
+
+- Click Start, type PowerShell, right-click Windows PowerShell, and then click Run as administrator
+
+![](images/power_shell.png){width="600px"}
+
+[Image source: Wikipedia](https://upload.wikimedia.org/wikipedia/de/f/f6/Windowspowershell_unter_Windows_8.png)
+:::
+
+::: {.column width="50%"}
+[Mac Terminal](https://support.apple.com/en-gb/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac)
+
+- Click the Launchpad icon  in the Dock, type Terminal in the search field, then click Terminal
+
+![](images/terminal.png){width="700px"}
+
+[Image source: Wikipedia](https://en.wikipedia.org/wiki/Terminal_(macOS)#/media/File:Appleterminal2.png)
+:::
+::::
+
+## Rendering
 
 3.  R console via `quarto` R package
 
@@ -126,7 +152,7 @@ quarto_render("document.qmd", output_format = "pdf")
 # Change Your Mental Model {background-color="#a13c65"}
 
 ##
-::: columns
+:::: columns
 ::: {.column width="50%"}
 Source
 
@@ -138,7 +164,7 @@ Output
 
 ![](images/word.png){width="700px" fig-alt="A blank Word document"}
 :::
-:::
+::::
 
 ##
 ::: columns
@@ -190,37 +216,18 @@ Output
 
 -   Metadata (YAML)  
 
-. . .
-
-:::: {.columns style="font-size: 60px;"}
-
-::: {.column width="45%"}
+::: {style="font-size: 60px;"}
 ``` yaml
 format: html
 engine: knitr
 ```
 :::
 
-::: {.column width="55%"}
-
-``` yaml
-format: html
-engine: jupyter
-```
-:::
-
-::::
-
 . . .
 
 -   Code
 
-. . .
-
-:::: {.columns style="font-size: 60px;"}
-
-::: {.column width="45%"}
-
+::: {style="font-size: 60px;"}
 ````code
 ```{{r}}
 library(dplyr)
@@ -229,35 +236,18 @@ mtcars |>
   summarize(mean = mean(mpg))
 ```
 ````
-
 :::
-
-:::: {.column width="55%"}
-
-````code
-```{{python}}
-from siuba import *
-(mtcars
-  >> group_by(_.cyl)
-  >> summarize(avg_mpg = _.mpg.mean()))
-```
-````
-
-:::
-
-::::
 
 . . .
 
 -   Text
 
-::: {style="font-size: 70px;"}
+::: {style="font-size: 60px;"}
 ``` markdown
 # Heading 1
 This is a sentence with some **bold text**, *italic text* and an 
 ![image](image.png){fig-alt="Alt text for this image"}.
 ```
-
 :::
 
 ## Metadata: YAML
@@ -282,25 +272,23 @@ format:
 :::
 
 
-## Metadata: YAML
-
-"Yet Another Markup Language" or "YAML Ain't Markup Language"
-
-``` yaml
----
-key: value
----
-```
-
 ## Output Options
 
+::::: columns
+:::: {.column width="50%"}
+
+::: {style="font-size: 60px;"}
 ``` yaml
 ---
 format: something
 ---
 ```
+:::
 
-. . .
+:::: 
+
+:::: {.column width="50%"}
+
 
 ``` yaml
 ---
@@ -319,11 +307,15 @@ format: pdf
 format: revealjs
 ---
 ```
+::::
+:::::
 
 . . .
 
+
 Then add option arguments!
 
+::: {style="font-size: 60px;"}
 ``` yaml
 ---
 format: 
@@ -332,11 +324,13 @@ format:
     code-fold: true
 ---
 ```
+:::
 
 . . .
 
 Sub-options should be below the main format output and spacing matters!
 
+::: {style="font-size: 55px;"}
 ``` yaml
 ---
 format: 
@@ -349,6 +343,7 @@ format:
     option4: [sub-option1, sub-option2]
 ---
 ```
+:::
 
 ## Why YAML?
 
@@ -395,6 +390,8 @@ Executing the Quarto Render button in RStudio will call Quarto render in a backg
 . . .
 
 > Markdown is a plain text format that is designed to be easy to write, and, even more importantly, easy to read
+
+
 ## Text Formatting
 
 +-----------------------------------+-------------------------------+
@@ -429,6 +426,7 @@ Executing the Quarto Render button in RStudio will call Quarto render in a backg
 
 ## Code
 
+::: {style="font-size: 55px;"}
 ```{r}
 #| echo: fenced
 #| output-location: column
@@ -438,9 +436,14 @@ Executing the Quarto Render button in RStudio will call Quarto render in a backg
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
-  geom_smooth(method = "loess"
-)
+  geom_smooth(method = "loess")
 ```
+:::
+
+See [here](https://quarto.org/docs/computations/execution-options.html) for the different execution options!
+
+
+
 
 ## Code, more than just R
 
@@ -495,7 +498,7 @@ Because Quarto is a command line interface (CLI), there are times you'll need to
 
 # `r fontawesome::fa("laptop-code", "white")` Your Turn (15 min) {background-color="#447099" transition="slide-in"}
 
--   In RStudio, create a `qmd` project
+-   In RStudio, create a [`qmd` project](https://quarto.org/docs/projects/quarto-projects.html)
 - add some code and some text to the `.qmd` file
 -   Render with the RStudio `Render ->` button
 
@@ -510,12 +513,17 @@ Because Quarto is a command line interface (CLI), there are times you'll need to
 
 # Using Zotero with R and Quarto {background-color="#a13c65"}
 
+
 ## See instructions [here](https://gsverhoeven.github.io/post/zotero-rmarkdown-csl/)
+
+![](images/zotero.png)
+
 
 # Creating APA style papers with R and Quarto {background-color="#a13c65"}
 
 ## See instructions [here](https://bookdown.org/yihui/rmarkdown-cookbook/word-template.html)
 
+![](images/word_int.png){width="250px"}
 
 # Code collaboration using Git and GitHub {background-color="#a13c65"}
 
@@ -589,11 +597,17 @@ Because Quarto is a command line interface (CLI), there are times you'll need to
 
 <figure>
     <img src="images/repository.png" 
-    width="1000px" 
+    width="1300px" 
     align="center">
     <figcaption>
     <a href="https://iqss.github.io/dss-rbuild/version-control.html">Source: https://iqss.github.io/dss-rbuild/version-control.html</a></figcaption>
 </figure>
+
+# Quick excourse: *Setting up Git and GitHub* {background-color="#DADEFD"}
+
+1) Read the instructions in the [Happy Git with R Book](https://happygitwithr.com/) and the [official GitHub guides](https://docs.github.com/en/get-started/quickstart/set-up-git) to install Git. [Installation instructions for Windows users](https://www.computerhope.com/issues/ch001927.htm)
+
+2) [Register a GitHub account](https://happygitwithr.com/github-acct.html)
 
 
 ## Version Control &mdash; Git and GitHub &mdash; check setup
@@ -747,32 +761,6 @@ git push origin master
 ### 🎈 The pushed files should appear in your GitHub repository 🎈
 
 
-## Version Control &mdash; Git and GitHub &mdash; .gitignore
-
-::: columns
-::: {.column width="40%"}
-
-- `.gitignore` file specifies which file(s) and/or folder(s) should be excluded from version control
-
-- lists one item per line; each line has a pattern, which determines whether files should be ignored 
-
-- see [gitignore documentation](https://git-scm.com/docs/gitignore) for more info on the different patterns 
-
-- reasons to exclude files from being pushed include:
-  - personal information others should not see (e.g., credential files)
-  - no rights to share (e.g., certain data files)
-  - outputs that may be re-created (e.g., `outputs.pdf`)
-
-
-::: 
-::: {.column width="60%"}
-
-<img src="images/gitignore.png" width="900px"/>
-
-:::
-:::
-
-
 ## Version Control &mdash; Git and GitHub &mdash; collaborating
 
 
@@ -799,7 +787,6 @@ git push origin master
 
 ## Scenario 1 - you are owner/ collaborator
 
-### ... first things first!
 
 1) Go to the GitHub repository you are working on as a team 
 
@@ -807,7 +794,7 @@ git push origin master
 
 2) In the terminal 📱, navigate to where you want to store the project files and type:
 
-:::: {style="font-size: 70px;"}
+:::: {style="font-size: 60px;"}
 ```{.bash filename="terminal"}
 git clone https://github.com/AnneOkk/testrepo.git
 ```
@@ -825,7 +812,7 @@ git clone https://github.com/AnneOkk/testrepo.git
 
 In the 📱 terminal 📱, type:
 
-:::: {style="font-size: 70px;"}
+:::: {style="font-size: 60px;"}
 ```{.bash filename="terminal"}
 git pull origin master
 ```
@@ -854,7 +841,7 @@ git checkout -b "cool-feature"
 6) Add and commit the files 
 ...through the usual workflow 😴
 
-:::: {style="font-size: 50px;"}
+:::: {style="font-size: 60px;"}
 ```{.bash filename="terminal"}
 git add .
 git commit -m "new feature file added"
@@ -867,7 +854,7 @@ git commit -m "new feature file added"
 
  🚧 👀 BUT you push the changes to the newly created branch to prevent messing up the master branch! 👀 🚧
 
-:::: {style="font-size: 50px;"}
+:::: {style="font-size: 60px;"}
 ```{.bash filename="terminal"}
 git push origin cool-feature
 ```
@@ -875,39 +862,25 @@ git push origin cool-feature
 
 . . .
 
-<img src="images/pull.png" width="800px"/>
+<img src="images/pull.png" width="1000px"/>
 
-7) On GitHub, you create a pull request
+##
+
+7) On GitHub, create a pull request
+
+<img src="images/pull_req.png" width="700px"/>
 
 . . .
+
+<br/>
 
 8) Once all issues are resolved, your changes will be merged into the master branch 🥳 
 
+##
 
-## 
-... But what if some issues remain unresolved?  👆*"You forgot to add code to read in the data!"* 🤔
+9) Checkout to  master branch
 
-. . .
-
-<br/>
-
-If the branch has not been removed, you may add smaller changes (on the same feature) through
-
-:::: {style="font-size: 50px;"}
-```{.bash filename="terminal"}
-git add .
-git commit -m "added data reader"
-git push origin branch-name
-```
-::::
-
-. . .
-
-<br/>
-
-❗ BUT if some time has passed and/or the addition is major ⏩ Checkout to  master branch:
-
-:::: {style="font-size: 50px;"}
+:::: {style="font-size: 60px;"}
 ```{.bash filename="terminal"}
 git checkout master
 ```
@@ -915,9 +888,11 @@ git checkout master
 
 . . .
 
-Pull all changes that happened in the mean time:
+<br/>
 
-:::: {style="font-size: 50px;"}
+10) Pull changes 
+
+:::: {style="font-size: 60px;"}
 ```{.bash filename="terminal"}
 git pull origin master
 ```
@@ -925,29 +900,29 @@ git pull origin master
 
 . . .
 
-Checkout a new branch for the missing feature:
+<br/>
 
-:::: {style="font-size: 50px;"}
+
+11) Checkout a new branch for missing feature.
+
+:::: {style="font-size: 60px;"}
 ```{.bash filename="terminal"}
 git checkout -b data-reader
 ```
 ::::
 
+<br/>
 
 . . .
 
-Make the necessary changes!
-
-. . .
-
-... And then, the usual workflow (don't forget to push to the new branch!)
+### ... And so on ...
 
 
 ## Scenario 2 - you want to contribute to an open science project
 
 . . .
 
-1) In GitHub, navigate to the [project](https://github.com/AnneAlterEgo/Testrepo/tree/main) you want to contribute to 
+1) In GitHub, navigate to the project you want to contribute to 
 
 . . .
 
@@ -979,9 +954,10 @@ You may need to click "compare across forks"
 
 <img src="images/successful_pull.png" width="700px"/>
 
-## ... On the other side 
+## ... On the other side (repo owner)
 
-<img src="images/review_pull.png" width="150px"/>
+![](images/review_pull.png){width="250px"}
+
 
 Open and review the pull request! 🔍
 
@@ -991,10 +967,14 @@ Otherwise, request additional changes in comments. 💬
 
 . . .
 
+<br/>
+
 ### 🎊 Yey, you're all set to contribute to open science projects on GitHub! 🎊
 
 
 # `r fontawesome::fa("laptop-code", "white")` Your Turn (15 min) {background-color="#447099" transition="slide-in"}
+
+0. [Get Git and GitHub up and running] 
 
 1.  Connect your local R project folder with a GitHub repository
 
@@ -1011,8 +991,6 @@ git push origin master
 <br /> 
 
 3. [OPTIONAL] Create a pull request for your own repository and merge the changes into the master branch 
-
-4. [OPTIONAL] One team member creates a pull request for the other team member's repository (first fork and clone); the repo owner merges the changes into her/his master (or main) branch. 
 
 
 # Integrating osf with GitHub {background-color="#a13c65"}
@@ -1044,10 +1022,10 @@ git push origin master
 ### 🎊 Yey, you're all set to connect your GitHub content to osf! 🎊
 
 
-# ...And there is so much more! {background-color="#a13c65"}
+## ...And there is so much more! {background-color="#a13c65"}
 
 ::: {style="text-align: right;"}
-![](images/m3.jpeg){height="650px"}
+![](images/m3.jpeg){height="550px"}
 
 Find me at:
 
