@@ -422,16 +422,6 @@
 <span id="cb1-4"><a href="#cb1-4"></a>  )</span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="fu">install.packages</span>(pkg_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="hello-quarto" class="slide level2 center">
-<h2>Hello Quarto</h2>
-<blockquote>
-<h3 id="quarto-is-an-open-source-scientific-and-technical-publishing-system-built-on-pandoc">Quarto<sup>®</sup> is an open-source scientific and technical publishing system built on <a href="https://pandoc.org/">Pandoc</a></h3>
-<p>. . .</p>
-</blockquote>
-<blockquote>
-<p>You can weave together narrative text and code to produce elegantly formatted output as documents, web pages, blog posts, books and more.</p>
-</blockquote>
-</section>
 <section id="how-does-rmarkdown-work" class="slide level2 center">
 <h2>How does RMarkdown work?</h2>
 
@@ -446,22 +436,6 @@
 <h2>Quarto, more than <em>just</em> <code>knitr</code></h2>
 
 <img data-src="images/qmd-jupyter.jpeg" class="r-stretch"></section>
-<section id="quarto-more-than-just-knitr-2" class="slide level2 center">
-<h2>Quarto, more than <em>just</em> <code>knitr</code></h2>
-
-<img data-src="images/jupyter-alone.jpeg" class="r-stretch"></section>
-<section id="quarto-more-internals" class="slide level2 center">
-<h2>Quarto, more internals</h2>
-<ul>
-<li>Quarto uses an engine like <code>knitr</code> to execute code and generate a temporary output <code>.md</code></li>
-</ul>
-<div class="fragment">
-<p>The <code>.md</code> file is processed via Pandoc and Quarto’s Lua filters + Bootstrap CSS for HTML or LaTeX for PDF and converted to a final output format</p>
-</div>
-<div class="fragment">
-<p>Lua filters written by R/Python/Julia developers should be interchangeable between formats - typically not language specific!</p>
-</div>
-</section>
 <section id="so-what-is-quarto" class="slide level2 center">
 <h2>So what is Quarto?</h2>
 <blockquote>

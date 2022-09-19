@@ -59,13 +59,6 @@ pkg_list <- c(
 install.packages(pkg_list)
 ```
 
-## Hello Quarto
-
-> ### Quarto^®^ is an open-source scientific and technical publishing system built on [Pandoc](https://pandoc.org/)
-. . .
-
-> You can weave together narrative text and code to produce elegantly formatted output as documents, web pages, blog posts, books and more.
-
 
 ## How does RMarkdown work?
 
@@ -83,27 +76,10 @@ install.packages(pkg_list)
 
 ![](images/qmd-jupyter.jpeg)
 
-## Quarto, more than *just* `knitr`
-
-![](images/jupyter-alone.jpeg)
-
-## Quarto, more internals
-
--   Quarto uses an engine like `knitr` to execute code and generate a temporary output `.md`
-
-. . .
-
-The `.md` file is processed via Pandoc and Quarto's Lua filters + Bootstrap CSS for HTML or LaTeX for PDF and converted to a final output format
-
-. . .
-
-Lua filters written by R/Python/Julia developers should be interchangeable between formats - typically not language specific!
-
 
 ## So what is Quarto?
 
 > Quarto is a command line interface (CLI) that renders plain text formats (`.qmd`, `.rmd`, `.md`) OR mixed formats (`.ipynb`/Jupyter notebook) into static PDF/Word/HTML reports, books, websites, presentations and more
-
 
 
 ## One install, "Batteries included"
