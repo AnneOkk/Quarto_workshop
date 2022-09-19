@@ -28,7 +28,9 @@ library(quarto)
 library(gt)
 library(gtExtras)
 ```
+## Cool feature
 
+Added.
 
 ## Overview
 
