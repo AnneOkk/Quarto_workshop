@@ -6,8 +6,8 @@ subtitle: "Introductory workshop for the Human AI Team, Sep 2022"
 format:
   revealjs: 
     slide-number: true
-    width: 1600
-    height: 1200
+    width: 1500
+    height: 1000
     chalkboard: 
       buttons: false
     preview-links: true
