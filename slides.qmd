@@ -1,8 +1,13 @@
 ---
-title: "Data analysis with R and Quarto + Collaboration using GitHub"
+title: "Introduction to reproducible data analysis with R and Quarto"
 title-slide-attributes:
     data-background-color: "#a13c65"
-subtitle: "Introductory workshop for the Human AI Team, Sep 2022"
+    data-background-image: "images/LMU_Logo.png"
+    data-background-size: 15%
+    data-background-position: 50% 83%
+subtitle: "KLI Seminar 2023"
+author:
+  - name: Anne-Kathrin Kleine
 format:
   revealjs: 
     slide-number: true
@@ -10,18 +15,19 @@ format:
     height: 1000
     chalkboard: 
       buttons: false
-    preview-links: true
+    preview-links: false
     footer: <https://quarto.org>
     theme: [simple, custom.scss]
-    logo: "/images/logoclin.png"
+    logo: "images/LMU_Logo.png"
     scrollable: false
     center: true
+    incremental: false
+    link-external-newwindow: true
 resources:
   - demo.pdf
 ---
 
-
-```{r setup, include=FALSE}
+```{r include=FALSE}
 library(fontawesome)
 library(tidyverse)
 library(quarto)
@@ -29,94 +35,300 @@ library(gt)
 library(gtExtras)
 ```
 
-## Overview
+# Schedule {background-color="#a13c65"}
 
-What I will present today:
+## DAY 1
 
-- How to write, share, and present code and text using R and Quarto
-- How to render code and text into different output formats (including presentations and APA style articles in word)
-- How to use Zotero with R 
-- How to collaborate using Git and GitHub (only introduction)
+::: fragment
+### 9.00-9.30: Introduction
 
-...and some other stuff
+-   Welcome and overview
+-   Reproducibility and open science
+:::
 
-## Resources 
+::: fragment
+### 9.40-10.30: Getting Started with R and Quarto
 
-- many of the Quarto-specific slides adapted from [Thomas Mock's presentation](https://github.com/jthomasmock/quarto-2hr-webinar) 
-- many helpful resources may be found in [this GitHub repository](https://github.com/mcanouil/awesome-quarto)
+-   Basics of R programming
+-   Best practices for organizing your code and materials
 
+:::
 
-## Workshop Prep (do it now!)
+------------------------------------------------------------------------
 
-- Are you on the latest version of RStudio i.e. [`v2022.07.1` or later](https://www.rstudio.com/products/rstudio/download/#download)?
+### 11.00-12.00: Creating data analysis projects in R and quarto
 
-``` r
-pkg_list <- c(
-  "tidyverse", "gt", "gtExtras", "reactable", "ggiraph", "here", "quarto",
-  "rmarkdown", "gtsummary", "palmerpenguins", "fs", "skimr"
-  )
-install.packages(pkg_list)
-```
+-   Creating a data analysis project
+-   Integrating code, text, and output within a Quarto document
 
+::: fragment
+### 12.15-13.00: Working with data
 
-## How does RMarkdown work?
+-   Working with data in R: importing, manipulating, and exporting data
+-   Data visualization and data analysis
+:::
 
+## DAY 2
 
-![](images/rmd-knitr.png){fig-alt="A diagram of how a RMD is turned into output formats via knitr and pandoc"}
+::: fragment
+### 09.00-10.00: Welcome and Hands-on Practice PART I
+-   Independent practice: Working on your data analysis project (with support from workshop facilitator)
+:::
 
-## Quarto, more than *just* `knitr`
+::: fragment
+### 10.10-11.00: Publishing Reproducible Data Analysis Scripts
+-   Publishing through GitHub, RPubs; integration with osf
+:::
+
+------------------------------------------------------------------------
+
+### 11.30-12.30: Hands-on Practice PART II
+- Continue working on your data analysis projects 
+- Publishing your projects
+
+::: fragment
+### 12.30-13.00: Closing Remarks 
+
+-   Recap of the workshop
+-   Q&A session
+:::
+
+## Workshop Requirements
+
+-   Are you on the [latest version of RStudio](https://posit.co/download/rstudio-desktop/#download)?
 
 . . .
 
+- Open [annekathrinkleine.com](annekathrinkleine.com)
 
-![](images/qmd-knitr.jpeg)
+. . .
 
-## Quarto, more than *just* `knitr`
+-   Open RStudio
 
-![](images/qmd-jupyter.jpeg)
+------------------------------------------------------------------------
 
+## Install relevant packages
+
+```{r}
+#| echo: fenced
+#| eval: false
+pkg_list <- c("tidyverse", "haven", "flextable", "broom", "report", "effectsize", "rempsyc")
+install.packages(pkg_list)
+```
+
+# Reproducibility and open science {background-color="#a13c65"}
+
+------------------------------------------------------------------------
+
+## Reproducibility and replicability
+
+::: callout-tip
+## Reproducibility
+
+**Reproducibility** means that research data and code are made available so that others are able to reach the same results as are claimed in scientific outputs. Closely related is the concept of **replicability**, the act of repeating a scientific methodology to reach similar conclusions. These concepts are core elements of empirical research.
+
+::: fragment
+Reproducibility emphasizes re-using original data and methods for verification, while replicability focuses on achieving consistent results with repeats of the experiment under similar conditions but using new data.
+:::
+:::
+
+::: {style="font-size: 50%;"}
+From [The Open Science Training Handbook](https://open-science-training-handbook.github.io/Open-Science-Training-Handbook_EN/02OpenScienceBasics/04ReproducibleResearchAndDataAnalysis.html)
+:::
+
+------------------------------------------------------------------------
+
+## Elements of Open Science
+
+![](images/open_science.png)
+
+::: {style="font-size: 50%;"}
+Source: [The six core principles of Open Science](https://www.researchgate.net/figure/The-six-core-principles-of-Open-Science-which-guide-the-Open-Traits-Network_fig1_332352194)
+:::
+
+------------------------------------------------------------------------
+
+## The benefits of Open Science for researchers
+
+![](images/open-science-benefits.jpeg)
+
+::: {style="font-size: 50%;"}
+Source: [The benefits of Open Science](https://phoebekoundouri.org/what-is-open-science/)
+:::
+
+## The role of R and Quarto (RMarkdown) for Open Science
+
+::: fragment
+### R and Quarto are open-source
+
+-   ensuring accessibility, collaboration, customizability, longevity
+:::
+
+::: fragment
+### Producing shareable and collaborative high-quality documents that integrate text and R code for analysis and visualization within one document
+:::
+
+::: fragment
+-   minimize "false" results in output documents because nothing needs to be copy-pasted
+-   "coding" of research papers (easy integration of later modifications)
+:::
+
+# Change Your Mental Model {background-color="#a13c65"}
+
+## 
+
+::: columns
+::: {.column width="50%"}
+Source
+
+![](images/word_doc.png){width="900px" fig-alt="A blank Word document"}
+:::
+
+::: {.column width="50%"}
+Output
+
+![](images/word_doc.png){width="900px" fig-alt="A blank Word document"}
+:::
+:::
+
+## 
+
+::: columns
+::: {.column width="50%"}
+Source
+
+````         
+---
+title: "ggplot2 demo"
+author: "Norah Jones"
+date: "5/22/2021"
+format: 
+  html:
+    fig-width: 8
+    fig-height: 4
+    code-fold: true
+---
+
+## Air Quality
+
+@fig-airquality further explores the impact of temperature 
+  on ozone level.
+
+```{{r}}
+#| label: fig-airquality
+#| fig-cap: Temperature and ozone level.
+#| warning: false
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess"
+)
+```
+````
+:::
+
+::: {.column width="50%"}
+Output ![](https://quarto.org/images/hello-knitr.png)
+:::
+:::
+
+# Getting Started with R {background-color="#a13c65"}
+
+## [Getting Started with R](https://rafalab.dfci.harvard.edu/dsbook/getting-started.html)
+
+![](images/rstudio.png)
+
+# Creating a data analysis project {background-color="#a13c65"}
+
+## Create a folder for your R project
+
+![](images/folder_new.png)
+
+------------------------------------------------------------------------
+
+## Create a Quarto document (report.qmd)
+
+![](images/new_r.png)
+
+------------------------------------------------------------------------
+
+## Create an R project
+
+![](images/rproj.png)
+
+------------------------------------------------------------------------
+
+## R projects
+
+When a project is opened within RStudio the following actions are taken:
+
+. . .
+
+-   A new R session is started
+
+. . .
+
+-   The .Rprofile, .RData file, and .Rhistory files in the project's main directory are loaded
+
+. . .
+
+-   **The current working directory is set to the project directory**
+
+. . .
+
+-   Previously edited source documents are restored into editor tabs
+
+. . .
+
+-   Other RStudio settings (e.g. active tabs, splitter positions, etc.) are restored to where they were the last time the project was closed
+
+# Working with Quarto {background-color="#a13c65"}
+
+## How does Quarto work?
+
+![](images/qmd-knitr.png){fig-alt="A diagram of how a QMD is turned into output formats via knitr and pandoc"}
+
+------------------------------------------------------------------------
 
 ## So what is Quarto?
 
-> Quarto is a command line interface (CLI) that renders plain text formats (`.qmd`, `.rmd`, `.md`) OR mixed formats (`.ipynb`/Jupyter notebook) into static PDF/Word/HTML reports, books, websites, presentations and more
-
+> Quarto is a command line interface (CLI) that renders plain text formats (`.qmd`, `.rmd`, `.md`) into static PDF/Word/HTML reports, books, websites, presentations and more
 
 ## One install, "Batteries included"
 
 -   Quarto is bundled and comes pre-installed with RStudio [v2022.07.1](https://www.rstudio.com/products/rstudio/download/#download) and beyond!
 
-- [more infos](https://quarto.org/docs/computations/r.html#installation)
-
+-   [more infos](https://quarto.org/docs/computations/r.html#installation)
 
 ## Rendering
 
-1. Render button
+1.  Render button
 
 . . .
 
-![](https://quarto.org/docs/tools/images/rstudio-render.png){fig-alt="A screenshot of the render button in RStudio" width="1000px"}  
-
+![](https://quarto.org/docs/tools/images/rstudio-render.png){fig-alt="A screenshot of the render button in RStudio" width="1000px"}
 
 ## Rendering
 
 2.  System shell via `quarto render`
 
 ::: {style="font-size: 60px;"}
-```{.bash filename="terminal"}
+``` {.bash filename="terminal"}
 quarto render document.qmd # defaults to html
 quarto render document.qmd --to pdf
 quarto render document.qmd --to docx
 ```
 :::
 
+------------------------------------------------------------------------
 
-# Quick excourse: *Power Shell* and *Terminal* {background-color="#DADEFD"}
+## Quick excourse: The *Terminal* {background-color="#DADEFD"}
 
-:::: columns
+::: columns
 ::: {.column width="50%"}
-[Windows Power Shell](https://learn.microsoft.com/en-us/powershell/scripting/discover-powershell?view=powershell-7.2) 
+[Windows Power Shell](https://learn.microsoft.com/en-us/powershell/scripting/discover-powershell?view=powershell-7.2)
 
-- Click Start, type PowerShell, right-click Windows PowerShell, and then click Run as administrator
+-   Click Start, type PowerShell, right-click Windows PowerShell, and then click Run as administrator
 
 ![](images/power_shell.png){width="600px"}
 
@@ -126,13 +338,41 @@ quarto render document.qmd --to docx
 ::: {.column width="50%"}
 [Mac Terminal](https://support.apple.com/en-gb/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac)
 
-- Click the Launchpad icon  in the Dock, type Terminal in the search field, then click Terminal
+-   Click the Launchpad icon in the Dock, type Terminal in the search field, then click Terminal
 
 ![](images/terminal.png){width="700px"}
 
 [Image source: Wikipedia](https://en.wikipedia.org/wiki/Terminal_(macOS)#/media/File:Appleterminal2.png)
 :::
-::::
+:::
+
+## Why you should know how to use the terminal (at least a little) {background-color="#DADEFD"}
+
+- Install software
+
+. . .
+
+- Open programs
+
+. . .
+
+- Run programs directly
+
+. . .
+
+- Scheduling scripts 
+
+. . .
+
+- You get feedback (error messages)
+
+. . .
+
+- Version control (Git and GitHub)
+
+. . .
+
+- Once you know how to use it, it's more efficient for navigation and creating/ modifying files
 
 ## Rendering
 
@@ -141,79 +381,20 @@ quarto render document.qmd --to docx
 ::: {style="font-size: 60px;"}
 ```{r}
 #| eval: false
-#| echo: true
+#| echo: fenced
 library(quarto)
 quarto_render("document.qmd") # defaults to html
 quarto_render("document.qmd", output_format = "pdf")
 ```
 :::
 
-# Change Your Mental Model {background-color="#a13c65"}
-
-##
-:::: columns
-::: {.column width="50%"}
-Source
-
-![](images/word.png){width="700px" fig-alt="A blank Word document"}
-:::
-
-::: {.column width="50%"}
-Output
-
-![](images/word.png){width="700px" fig-alt="A blank Word document"}
-:::
-::::
-
-##
-::: columns
-::: {.column width="50%"}
-Source
-
-
-    ---
-    title: "ggplot2 demo"
-    author: "Norah Jones"
-    date: "5/22/2021"
-    format: 
-      html:
-        fig-width: 8
-        fig-height: 4
-        code-fold: true
-    ---
-
-    ## Air Quality
-
-    @fig-airquality further explores the impact of temperature 
-      on ozone level.
-
-    ```{{r}}
-    #| label: fig-airquality
-    #| fig-cap: Temperature and ozone level.
-    #| warning: false
-    library(ggplot2)
-    ggplot(airquality, aes(Temp, Ozone)) + 
-      geom_point() + 
-      geom_smooth(method = "loess"
-    )
-    ```
-:::
-
-::: {.column width="50%"}
-Output
-![](https://quarto.org/images/hello-knitr.png)
-:::
-:::
-
-
 # Working with a `.qmd` {background-color="#a13c65"}
-
 
 ## A `.qmd` is a plain text file
 
 . . .
 
--   Metadata (YAML)  
+-   Metadata (YAML)
 
 ::: {style="font-size: 60px;"}
 ``` yaml
@@ -227,14 +408,12 @@ engine: knitr
 -   Code
 
 ::: {style="font-size: 60px;"}
-````code
 ```{{r}}
 library(dplyr)
 mtcars |> 
   group_by(cyl) |> 
   summarize(mean = mean(mpg))
 ```
-````
 :::
 
 . . .
@@ -253,96 +432,21 @@ This is a sentence with some **bold text**, *italic text* and an
 
 The [YAML](https://yaml.org/) metadata or header is:
 
-> processed in many stages of the rendering process and can influence the final document in many different ways. It is placed at the very beginning of the document and is read by each of Pandoc, Quarto and `knitr`. Along the way, the information that it contains can affect the code, content, and the rendering process.
-
+> influences the final document in different ways. It is placed at the very beginning of the document and is read by each of Pandoc, Quarto and `knitr`. Along the way, the information that it contains can affect the code, content, and the rendering process.
 
 ## YAML
 
-::: {style="font-size: 80px;"}
+::: {style="font-size: 70px;"}
 ``` yaml
----
 title: "My Document"
 format: 
   html:
     toc: true
-    code-fold: true
----
+    code_folding: 'show'
 ```
 :::
 
-
-## Output Options
-
-::::: columns
-:::: {.column width="50%"}
-
-::: {style="font-size: 60px;"}
-``` yaml
----
-format: something
----
-```
-:::
-
-:::: 
-
-:::: {.column width="50%"}
-
-
-``` yaml
----
-format: html
----
-```
-
-``` yaml
----
-format: pdf
----
-```
-
-``` yaml
----
-format: revealjs
----
-```
-::::
-:::::
-
-. . .
-
-
-Then add option arguments!
-
-::: {style="font-size: 60px;"}
-``` yaml
----
-format: 
-  html:
-    toc: true
-    code-fold: true
----
-```
-:::
-
-. . .
-
-Sub-options should be below the main format output and spacing matters!
-
-::: {style="font-size: 55px;"}
-``` yaml
----
-format: 
-  html:
-    option1: "text"
-    option2: logical
-    option3:
-      - sub-option
-      - sub-option
-    option4: [sub-option1, sub-option2]
----
-```
-:::
+See more formats and other YAML metadata options [here](https://quarto.org/docs/output-formats/all-formats.html)
 
 ## Why YAML?
 
@@ -351,7 +455,7 @@ To avoid manually typing out all the options, every time!
 . . .
 
 ::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
+``` {.bash filename="terminal"}
 quarto render document.qmd --to html
 ```
 :::
@@ -361,7 +465,7 @@ quarto render document.qmd --to html
 . . .
 
 ::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
+``` {.bash filename="terminal"}
 quarto render document.qmd --to html -M code fold:true
 ```
 :::
@@ -371,7 +475,7 @@ quarto render document.qmd --to html -M code fold:true
 . . .
 
 ::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
+``` {.bash filename="terminal"}
 quarto render document.qmd --to html -M code-fold:true -P alpha:0.2 -P ratio:0.3
 ```
 :::
@@ -382,54 +486,59 @@ Executing the Quarto Render button in RStudio will call Quarto render in a backg
 
 ![](images/background-job.png)
 
-
 ## Markdown
 
-> Quarto is based on Pandoc and uses its variation of markdown as its underlying document syntax. Pandoc markdown is an extended and slightly revised version of John Gruber's [Markdown](https://daringfireball.net/projects/markdown/) syntax.
-. . .
-
-> Markdown is a plain text format that is designed to be easy to write, and, even more importantly, easy to read
-
+> Quarto uses markdown as its underlying document syntax. Markdown is a plain text format that is designed to be easy to write, and, even more importantly, easy to read
 
 ## Text Formatting
 
 +-----------------------------------+-------------------------------+
 | Markdown Syntax                   | Output                        |
 +===================================+===============================+
-|     *italics* and **bold**        | *italics* and **bold**        |
+| ```                               | *italics* and **bold**        |
+| *italics* and **bold**            |                               |
+| ```                               |                               |
 +-----------------------------------+-------------------------------+
-|     superscript^2^ / subscript~2~ | superscript^2^ / subscript~2~ |
+| ```                               | superscript^2^ / subscript~2~ |
+| superscript^2^ / subscript~2~     |                               |
+| ```                               |                               |
 +-----------------------------------+-------------------------------+
-|     ~~strikethrough~~             | ~~strikethrough~~             |
+| ```                               | ~~strikethrough~~             |
+| ~~strikethrough~~                 |                               |
+| ```                               |                               |
 +-----------------------------------+-------------------------------+
-|     `verbatim code`               | `verbatim code`               |
+| ```                               | `verbatim code`               |
+| `verbatim code`                   |                               |
+| ```                               |                               |
 +-----------------------------------+-------------------------------+
 
 ## Headings
 
-+---------------------+-----------------+
-| Markdown Syntax     | Output          |
-+=====================+=================+
-|     # Header 1      | # Header 1      |
-+---------------------+-----------------+
-|     ## Header 2     | ## Header 2     |
-+---------------------+-----------------+
-|     ### Header 3    | ### Header 3    |
-+---------------------+-----------------+
-|     #### Header 4   | #### Header 4   |
-+---------------------+-----------------+
-|     ##### Header 5  | ##### Header 5  |
-+---------------------+-----------------+
-|     ###### Header 6 | ###### Header 6 |
-+---------------------+-----------------+
++-------------------+-----------------+
+| Markdown Syntax   | Output          |
++===================+=================+
+| ```               | # Header 1      |
+| # Header 1        |                 |
+| ```               |                 |
++-------------------+-----------------+
+| ```               | ## Header 2     |
+| ## Header 2       |                 |
+| ```               |                 |
++-------------------+-----------------+
+| ```               | ### Header 3    |
+| ### Header 3      |                 |
+| ```               |                 |
++-------------------+-----------------+
+| ```               | #### Header 4   |
+| #### Header 4     |                 |
+| ```               |                 |
++-------------------+-----------------+
 
 ## Code
 
-::: {style="font-size: 55px;"}
 ```{r}
 #| echo: fenced
 #| output-location: column
-#| label: fig-airquality
 #| fig-cap: Temperature and ozone level.
 #| warning: false
 library(ggplot2)
@@ -437,600 +546,197 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_point() + 
   geom_smooth(method = "loess")
 ```
-:::
 
-See [here](https://quarto.org/docs/computations/execution-options.html) for the different execution options!
+# Data importing, manipulating, and exporting {background-color="#a13c65"}
 
+## Get data
 
+-   Download [the example dataset](https://github.com/AnneOkk/attitudes_study/tree/main/Data)
+-   Store data file in "data/raw" folder
 
+## Reading data in
 
-## Code, more than just R
-
-::: columns
-::: {.column width="50%"}
-```{python}
+```{r}
 #| echo: fenced
-#| eval: false
-#| label: fig-polar
-#| fig-cap: "A line plot on a polar axis"
-import numpy as np
-import matplotlib.pyplot as plt
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'} 
-)
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
+## Read in data
+library(readxl)
+library(tidyverse)
+data <- read_excel("Exercise/data/raw/data.xlsx", col_names = T) # if you created an R project you can use the direct path "data/raw/data.xlsx"
 ```
-:::
 
-::: {.column width="50%"}
-![](images/polar-axis.png){width="650px"}
-:::
-:::
+## Manipulating data
 
+```{r}
+#| echo: fenced
+# Name correction
+names(data) <- gsub("d2priv", "dapriv2", names(data))
 
-## Navigating in the terminal
+# Own function
+recode_5 <- function(x) {               
+  x * (-1)+6
+}
 
-Because Quarto is a command line interface (CLI), there are times you'll need to use it via the terminal. A great overview of using the command line and navigating files/directories is available via the [Data Carpentries](https://datacarpentry.org/shell-genomics/02-the-filesystem/index.html) or a great interactive tool for understanding commands: <https://tldr.ostera.io>
-
-. . .
-
-+------------------------------------+-------------------------------------------------------+
-| Command                            | Action                                                |
-+====================================+=======================================================+
-| `pwd`                              | Print name of current working directory               |
-+------------------------------------+-------------------------------------------------------+
-| `cd`                               | Change current working directory                      |
-+------------------------------------+-------------------------------------------------------+
-| `ls`                               | List directory contents                               |
-+------------------------------------+-------------------------------------------------------+
-| `quarto --help`                    | Return `quarto` help docs                             |
-+------------------------------------+-------------------------------------------------------+
-| `mkdir howdy`                      | Make a new folder/directory called "howdy"            |
-+------------------------------------+-------------------------------------------------------+
-| `rm folder-name/some-file.qmd`     | Delete `some-file.qmd` in the `folder-name` directory |
-+------------------------------------+-------------------------------------------------------+
-
-# `r fontawesome::fa("laptop-code", "white")` Your Turn (15 min) {background-color="#447099" transition="slide-in"}
-
--   In RStudio, create a [`qmd` project](https://quarto.org/docs/projects/quarto-projects.html)
-- add some code and some text to the `.qmd` file
--   Render with the RStudio `Render ->` button
-
-<br>
-
--   Move to the (integrated) terminal and execute:
-
--   Render via terminal with `quarto render ....qmd --to pdf`
-
--   Compare to the HTML version
-
-
-# Using Zotero with R and Quarto {background-color="#a13c65"}
-
-
-## See instructions [here](https://gsverhoeven.github.io/post/zotero-rmarkdown-csl/)
-
-![](images/zotero.png)
-
-
-# Creating APA style papers with R and Quarto {background-color="#a13c65"}
-
-## See instructions [here](https://bookdown.org/yihui/rmarkdown-cookbook/word-template.html)
-
-![](images/word_int.png){width="250px"}
-
-# Code collaboration using Git and GitHub {background-color="#a13c65"}
-
-
-## Advantages of using Git and GitHub  
-
-. . .
-  
-
-::: {style="font-size: 1.2em"}
-- Contribute to open source projects, see [here](https://www.dataschool.io/how-to-contribute-on-github/) (almost all open source projects use GitHub)  🎈
-:::
-
-. . . 
-
-::: {style="font-size: 1.2em"}
-- Showcase your work 🎤 
-:::
-
-. . .
-
-::: {style="font-size: 1.2em"}
-- Track changes across versions  🔍 
-:::
-
-. . .
-
-::: {style="font-size: 1.2em"}
--  Collaborate on projects 👨‍🔬 👷‍♀️
-:::
-
-. . .
-
-::: {style="font-size: 1.2em"}
-- Various integration options 🤹‍♂️
-    - Amazon and Google Cloud; or use GitHub pages or Netlify to build websites based on your R files 
-:::
-
-## Version Control &mdash; Git and GitHub &mdash; Definitions
-
-::: {.incremental}
-### Git <img src="images/git.png" width="50px" >
-
-- a software that keeps track of versions of a set of files
-- it is *local* to you; the records are kept on your computer
-
-### GitHub <img src="images/github.png" width="70px" >
-
-- a hosting service that can keep the records
-- it is *remote* to you, like Dropbox
-- GitHub is specifically structured to keep records with Git
-:::
-
-##
-
-::: {.incremental}
-### Repository, or repo
-- a set of files whose records are kept together, by Git and/or on GitHub
-
-
-### To commit
-- to take a snapshot of a repository
-- it is local, the records are kept on your computer unless you push
-
-### To push
-- to move a copy of the records from Git to GitHub, from your computer to online server
-- it is like uploading (the new versions of) your files and sub-folders to a website
-:::
-
-##
-
-<figure>
-    <img src="images/repository.png" 
-    width="1300px" 
-    align="center">
-    <figcaption>
-    <a href="https://iqss.github.io/dss-rbuild/version-control.html">Source: https://iqss.github.io/dss-rbuild/version-control.html</a></figcaption>
-</figure>
-
-# Quick excourse: *Setting up Git and GitHub* {background-color="#DADEFD"}
-
-1) Read the instructions in the [Happy Git with R Book](https://happygitwithr.com/) and the [official GitHub guides](https://docs.github.com/en/get-started/quickstart/set-up-git) to install Git. [Installation instructions for Windows users](https://www.computerhope.com/issues/ch001927.htm)
-
-2) [Register a GitHub account](https://happygitwithr.com/github-acct.html)
-
-
-## Version Control &mdash; Git and GitHub &mdash; check setup
-
-. . .
-
-In the **terminal** 📱: 
-
-::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-git --version
+# Use of mutate_at to apply function
+data_proc <- data %>%
+  mutate_at(vars(matches("gattAI1_3|gattAI1_6|gattAI1_8|gattAI1_9|gattAI1_10|gattAI2_5|gattAI2_9|gattAI2_10")), recode_5)
 ```
-:::
-- you should see the Git version  ✅
 
-. . .
+## Exporting data
 
-In the **terminal** 📱: 
-
-::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-git config --global user.name
+```{r}
+#| echo: fenced
+library(haven)
+write_sav(data_proc, "Exercise/data/processed/data_proc.sav") # if you created an R project you can use the direct path "data/processed/data_proc.sav"
 ```
-:::
-- you should see the Git user name  ✅
 
-<br /> 
+# The R folder {background-color="#a13c65"}
 
-. . .
+## Storing and sourcing custom functions from the R folder
 
-#### 🚫 If these steps did not work, go [here](https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git) and set up Git
+-   You may store your custom functions in a separate file (e.g., "R/custom-functions.R") that you may source in your report document ("report.qmd")
 
-#### You just don't want to use the terminal ❓ ▶ For version control in RStudio, see [here](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and particularly [**this video**](https://www.youtube.com/watch?v=megZYkCLMA4)
+**In R/custom-functions.R**:
 
-## Version Control &mdash; Git and GitHub &mdash; connect local with remote
+```{r}
+#| echo: fenced
+# Own function
+recode_5 <- function(x) {               
+  x * (-1)+6
+}
+```
 
-::: columns
-::: {.column width="40%"}
+**Reading in your custom functions**:
 
-1) Go to GitHub and create a new repository 
+```{r}
+#| echo: fenced
+source("Exercise/R/custom-functions.R")
+```
 
-<img src="images/new_repo.png" width="500px">
+# Tables and visualisations {background-color="#a13c65"}
 
-::: 
-::: {.column width="60%"}
+## Reading in data
 
+```{r}
+#| echo: fenced
+data <- haven::read_sav("Exercise/data/processed/data_proc.sav")
+```
 
-2) Fill in some info, create a public repository 
-<img src="images/testrepo.png" width="800px">
+## Creating a correlation table
 
-::: 
-:::
+### Creating composites
+
+```{r}
+#| echo: fenced
+data <- data[ , purrr::map_lgl(data, is.numeric)] %>% # select numeric variables
+  select(matches("gattAI1|soctechblind|trust1|anxty1|SocInf1|Age")) # select relevant variables
+
+comp_split <- data %>% sjlabelled::remove_all_labels(.) %>% 
+  split.default(sub("_.*", "", names(data))) # creating a list of dataframes, where each dataframe consists of the columns from the original data that shared the same prefix (all characters before the underscore)
+
+comp <- purrr::map(comp_split, ~ rowMeans(.x, na.rm=T)) #calculating the row-wise mean of each data frame in the list `comp_split`, with the output being a new list (`comp`) where each element is a numeric vector of row means from each corresponding data frame in `comp_split`
+
+comp_df <- do.call("cbind", comp) %>% as.data.frame(.) # binding all the elements in the list `comp` into a single data frame, `comp_df`
+```
+
+## Creating the correlation table
+
+```{r}
+#| echo: fenced
+cor_tab <- corstars(comp_df, removeTriangle = "upper")
+cor_tab
+```
+
+## Creating correlation plot
+
+```{r}
+#| echo: fenced
+cor_matrix <- cor(comp_df[1:6])
+
+corrplot::corrplot(cor_matrix, method="color", type="upper", order="hclust", 
+         addCoef.col = "black", # Add correlation coefficient on the plot
+         tl.col="black", # Text label color
+         tl.srt=90, # Text label rotation
+         title="Correlation matrix", mar=c(0,0,1,0))
+
+```
+
+## Scatterplot
+
+```{r}
+#| echo: fenced
+scatter <- ggplot(comp_df, aes(x=SocInf1, y=trust1, color=Age)) +
+  geom_point() +
+  labs(x="Anxiety", y="GattAI1", color="Age") +
+  theme_minimal() +
+  ggtitle("Scatterplot of social influence and trust colored by age")
+scatter
+```
+
+## Saving scatterplot
+
+```{r}
+#| echo: fenced
+ggsave(filename="Exercise/output/figs/scatter.png", plot=scatter)
+```
+
+# Referencing, style and the config folder {background-color="#a13c65"}
+
+## Export the bibliography
+
+![](images/zotero_bib.png)
+
+## Select a csl style
+
+[Zotero Style Repository](https://www.zotero.org/styles?q=APA)
+
+![](images/zotero_style.png)
 
 ## 
 
-3) Follow the steps in Option 1: *"…create a new repository on the command line"*
-
-<img src="images/push.png" width="900px">
-
-
-## 
-
-
-4) In the **terminal** 📱, navigate to your Quarto project folder: 
-
-:::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-cd project_folder
+::: {style="font-size: 60px;"}
+``` yaml
+___
+bibliography: "/config/refs.bib"
+csl: "/config/apa.csl"
+---
 ```
-::::
-
-<br/>
-
-. . .
-
-5) initialize a git repo on your local machine:
-
-:::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-git init
-```
-::::
-
-<br/>
-
-. . .
-
-6) create content you can then add in the next step (e.g., README file):
-
-:::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-touch README.md
-```
-::::
-
-##
-
-7) stage all the content in that folder to be added:
-
-:::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-git add .
-```
-::::
-
-
-<br/>
-
-. . .
-
-8) stage all the content in that folder to be committed: 
-
-:::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-git commit -m "add empty readme"
-```
-::::
-
-
-##
-
-9) connect local repo to the remote repo. Substitute the link with your repo URL!
-
-:::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-git remote add origin https://github.com/AnneOkk/testrepo.git
-```
-::::
-
-
-<br/>
-
-. . .
-
-10) push all the content from Git to GitHub:
-
-:::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-git push origin master
-```
-::::
-
-
-<br/>
-
-. . .
-
-<img src="images/success.png" width="800px"/>
-
-
-### 🎈 The pushed files should appear in your GitHub repository 🎈
-
-
-## Version Control &mdash; Git and GitHub &mdash; collaborating
-
-
-### Imagine... 🤔
-
-. . .
-
-- you work in a team of data scientists/ data enthusiastic researchers 🧙🧙🏿🧙‍♀️🧙🏻‍♀️
-
-. . .
-
-- you want to be able to work together on a data analysis project 👨‍💻👩‍💻 👨‍💻👩‍💻
-
-. . .
-
-- you want to keep track of what the others do and finally merge individual contributions into one overall project  ✨ 💾 ✨
-
-. . .
-
-#### But how ❓ 🤷 
-
-
-# Version Control &mdash; Git and GitHub &mdash; collaborating {background-color="#a13c65"}
-
-## Scenario 1 - you are owner/ collaborator
-
-
-1) Go to the GitHub repository you are working on as a team 
-
-. . .
-
-2) In the terminal 📱, navigate to where you want to store the project files and type:
-
-:::: {style="font-size: 60px;"}
-```{.bash filename="terminal"}
-git clone https://github.com/AnneOkk/testrepo.git
-```
-::::
-
-. . .
-
-<img src="images/clone.png" width="800px"/>
-
-##
-
-3) Next, you would always want to make sure that you are up to date with what has changed in the remote repository
-
-. . .
-
-In the 📱 terminal 📱, type:
-
-:::: {style="font-size: 60px;"}
-```{.bash filename="terminal"}
-git pull origin master
-```
-::::
-
-. . .
-
-<br/>
-
-4) Create a new branch to add changes that belong to a novel feature you are working on (this prevents messing up the master branch)
-
-:::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-git checkout -b "cool-feature"
-```
-::::
-
-. . .
-
-<br/>
-
-5) Now make some changes (e.g., add the new cool feature to the code)
-
-##
-
-6) Add and commit the files 
-...through the usual workflow 😴
-
-:::: {style="font-size: 60px;"}
-```{.bash filename="terminal"}
-git add .
-git commit -m "new feature file added"
-```
-::::
-
-. . .
-
-<br/>
-
- 🚧 👀 BUT you push the changes to the newly created branch to prevent messing up the master branch! 👀 🚧
-
-:::: {style="font-size: 60px;"}
-```{.bash filename="terminal"}
-git push origin cool-feature
-```
-::::
-
-. . .
-
-<img src="images/pull.png" width="1000px"/>
-
-##
-
-7) On GitHub, create a pull request
-
-<img src="images/pull_req.png" width="700px"/>
-
-. . .
-
-<br/>
-
-8) Once all issues are resolved, your changes will be merged into the master branch 🥳 
-
-##
-
-9) Checkout to  master branch
-
-:::: {style="font-size: 60px;"}
-```{.bash filename="terminal"}
-git checkout master
-```
-::::
-
-. . .
-
-<br/>
-
-10) Pull changes 
-
-:::: {style="font-size: 60px;"}
-```{.bash filename="terminal"}
-git pull origin master
-```
-::::
-
-. . .
-
-<br/>
-
-
-11) Checkout a new branch for missing feature.
-
-:::: {style="font-size: 60px;"}
-```{.bash filename="terminal"}
-git checkout -b data-reader
-```
-::::
-
-<br/>
-
-. . .
-
-### ... And so on ...
-
-
-## Scenario 2 - you want to contribute to an open science project
-
-. . .
-
-1) In GitHub, navigate to the project you want to contribute to 
-
-. . .
-
-2) Fork the repo!
-
-<img src="images/fork.png" width="700px"/>
-
-. . .
-
-3) Clone the new repo! 
- 
-:::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-git clone https://github.com/AnneOkk/Testrepo-1.git
-```
-::::
-
-. . .
-
-4) Make your changes and then add, commit, and push to your master branch 
-
-. . .
-
-## 
-
-5) On GitHub, go back to the original repository and create a pull request. 
-
-You may need to click "compare across forks"
-
-<img src="images/successful_pull.png" width="700px"/>
-
-## ... On the other side (repo owner)
-
-![](images/review_pull.png){width="250px"}
-
-
-Open and review the pull request! 🔍
-
-If you're happy with the changes, merge! 👍
-
-Otherwise, request additional changes in comments. 💬
-
-. . .
-
-<br/>
-
-### 🎊 Yey, you're all set to contribute to open science projects on GitHub! 🎊
-
-
-# `r fontawesome::fa("laptop-code", "white")` Your Turn (15 min) {background-color="#447099" transition="slide-in"}
-
-0. [Get Git and GitHub up and running] 
-
-1.  Connect your local R project folder with a GitHub repository
-
-2. Change some of the content in R, save, and then push the changes to GitHub
-
-:::: {style="font-size: 70px;"}
-```{.bash filename="terminal"}
-git add .
-git commit -m "senseful commit message that describes the change(s)"
-git push origin master
-```
-::::
-
-<br /> 
-
-3. [OPTIONAL] Create a pull request for your own repository and merge the changes into the master branch 
-
-
-# Integrating osf with GitHub {background-color="#a13c65"}
-
-## Integrating osf with GitHub
-
-1) Create your osf project 
-
-. . .
-
-2) Enable GitHub in Add-ons
-
-<img src="images/osf_int.png" width="850px"/>
-
-##
-
-3) Import GitHub Account
-
-<img src="images/osf_imp.png" width="600px"/>
-
-## 
-
-### 4. Select Repo
-
-<img src="images/osf_sel.png" width="800px"/>
-
-. . .
-
-### 🎊 Yey, you're all set to connect your GitHub content to osf! 🎊
-
-
-## ...And there is so much more! {background-color="#a13c65"}
-
-::: {style="text-align: right;"}
-![](images/m3.jpeg){height="550px"}
-
-Find me at:
-
-`r fa("twitter")` [\@AnKaKleine](https://twitter.com/ankakleine?lang=en)
-
-`r fa("github")` [\@AnneOkk](https://github.com/AnneOkk)
-
-`r fa("link")` [http://annekathrinkleine.com/](https://annekathrinkleine.com//)
 :::
+
+## Store a template word document
+
+::: {style="font-size: 60px;"}
+``` yaml
+format: 
+  docx:
+    reference-doc: "/config/template_apa.docx"
+```
+:::
+
+# Folder structure overview {background-color="#a13c65"}
+
+## Current folder structure
+
+![](images/folder_structure.png){width="400px"}
+
+## Back to "report.qmd"
+
+. . .
+
+### The visual editor and inserting text and citations
+
+![](images/visual_ed.png)
+
+# Questions and outlook
+
+## Questions?
+
+## Outlook
+
+-   Tomorrow we will look into data analysis publication for true reproducibility
+
+. . .
+
+-   You will get the chance to work on your own data analysis project or use the material provided
+
+# Thank you and see you tomorrow! {background-color="#a13c65"}
+![](https://media.giphy.com/media/xUOxf7XfmpxuSode1O/giphy.gif)

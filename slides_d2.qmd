@@ -1,0 +1,348 @@
+---
+title: "Introduction to reproducible data analysis with R and Quarto - Day II"
+title-slide-attributes:
+    data-background-color: "#a13c65"
+    data-background-image: "images/LMU_Logo.png"
+    data-background-size: 15%
+    data-background-position: 50% 83%
+subtitle: "KLI Seminar 2023"
+author:
+  - name: Anne-Kathrin Kleine
+format:
+  revealjs: 
+    slide-number: true
+    width: 1500
+    height: 1000
+    chalkboard: 
+      buttons: false
+    preview-links: false
+    footer: <https://quarto.org>
+    theme: [simple, custom.scss]
+    logo: "images/LMU_Logo.png"
+    scrollable: false
+    center: true
+    incremental: false
+    link-external-newwindow: true
+resources:
+  - demo.pdf
+---
+
+```{r include=FALSE}
+library(fontawesome)
+library(tidyverse)
+library(quarto)
+library(gt)
+library(gtExtras)
+```
+
+# Schedule {background-color="#a13c65"}
+
+## DAY 2
+
+::: fragment
+### 09.00-10.00: Welcome and Hands-on Practice PART I
+-   Independent practice: Working on your data analysis project (with support from workshop facilitator)
+:::
+
+::: fragment
+### 10.10-11.00: Publishing Reproducible Data Analysis Scripts
+-   Publishing through GitHub, RPubs; integration with osf
+:::
+
+------------------------------------------------------------------------
+
+### 11.30-12.30: Hands-on Practice PART II
+- Continue working on your data analysis projects 
+- Publishing your projects
+
+::: fragment
+### 12.30-13.00: Closing Remarks and Resources
+
+-   Recap of the workshop
+-   Additional resources for learning R, Quarto, reproducibility best practices, version control and collaboration
+-   Q&A session
+:::
+
+# `r fontawesome::fa("laptop-code", "white")` Your Turn (45 min) {background-color="#447099" transition="slide-in"}
+
+- In groups of 3-4
+
+- Create your own data analysis project based on the material and code organisation that was presented yesterday 
+
+- Render your code and work on the files until you are satisfied with the output 
+
+- If you get stuck, ask the others in the group, otherwise, come back to the main room and ask me
+
+# Version control using Git and GitHub {background-color="#a13c65"}
+
+## Advantages of using Git and GitHub
+
+. . .
+
+::: {style="font-size: 1.2em"}
+-   Contribute to open source [projects](https://www.dataschool.io/how-to-contribute-on-github/) 🎈
+:::
+
+. . .
+
+::: {style="font-size: 1.2em"}
+-   Showcase your work 🎤
+:::
+
+. . .
+
+::: {style="font-size: 1.2em"}
+-   Track changes across versions 🔍
+:::
+
+. . .
+
+::: {style="font-size: 1.2em"}
+-   Collaborate on projects 👨‍🔬 👷‍♀️
+:::
+
+. . .
+
+::: {style="font-size: 1.2em"}
+-   Various integration options 🤹‍♂️
+    -   GitHub pages or Netlify to build websites 
+:::
+
+## Version Control --- Git and GitHub --- Definitions
+
+::: fragment
+### Git ![](images/git.png){width="70px"}
+
+-   a software that keeps track of versions of a set of files
+-   it is *local* to you; the records are kept on your computer
+:::
+
+::: fragment
+### GitHub ![](images/githubcat.png){width="70px"}
+
+-   a hosting service that can keep the records
+-   it is *remote* to you, like Dropbox
+-   GitHub is specifically structured to keep records with Git
+:::
+
+## 
+
+::: fragment
+### Repository, or repo
+
+-   a set of files whose records are kept together, by Git and/or on GitHub
+:::
+
+::: fragment
+### To commit
+
+-   to take a snapshot of a repository
+-   it is local, the records are kept on your computer unless you push
+:::
+
+::: fragment
+### To push
+
+-   to move a copy of the records from Git to GitHub, from your computer to online server
+-   it is like uploading (the new versions of) your files and sub-folders to a website
+:::
+
+## 
+
+# Excourse: *Setting up Git and GitHub* {background-color="#DADEFD"}
+
+1)  Read the instructions in the [Happy Git with R Book](https://happygitwithr.com/) and the [official GitHub guides](https://docs.github.com/en/get-started/quickstart/set-up-git) to install Git. [Installation instructions for Windows users](https://www.computerhope.com/issues/ch001927.htm)
+
+2)  [Register a GitHub account](https://happygitwithr.com/github-acct.html)
+
+
+## GitHub - create a repository
+
+![](images/create_repo.png)
+
+
+## Upload files
+
+![](images/upload_git.png){width="600px"}
+
+# Version Control in the terminal {background-color="#a13c65"}
+
+
+## Version Control --- Git and GitHub --- connect local with remote
+
+::: columns
+::: {.column width="40%"}
+1)  Go to GitHub and create a new repository
+
+![](images/new_repo.png){width="500px"}
+:::
+
+::: {.column width="60%"}
+2)  Fill in some info, create a public repository ![](images/testrepo.png){width="500px"}
+:::
+:::
+
+## 
+
+3)  Follow the steps in Option 1: *"...create a new repository on the command line"*
+
+![](images/push.png){width="900px"}
+
+## 
+
+4)  In the **terminal** 📱, navigate to your R project folder:
+
+::: {style="font-size: 70px;"}
+``` {.bash filename="terminal"}
+cd project_folder
+```
+:::
+
+<br/>
+
+. . .
+
+5)  initialize a git repo on your local machine:
+
+::: {style="font-size: 70px;"}
+``` {.bash filename="terminal"}
+git init
+```
+:::
+
+<br/>
+
+. . .
+
+6)  create content you can then add in the next step (e.g., README file):
+
+::: {style="font-size: 70px;"}
+``` {.bash filename="terminal"}
+touch README.md
+```
+:::
+
+## 
+
+7)  stage all the content in that folder to be added:
+
+::: {style="font-size: 70px;"}
+``` {.bash filename="terminal"}
+git add .
+```
+:::
+
+<br/>
+
+. . .
+
+8)  stage all the content in that folder to be committed:
+
+::: {style="font-size: 70px;"}
+``` {.bash filename="terminal"}
+git commit -m "add empty readme"
+```
+:::
+
+## 
+
+9)  connect local repo to the remote repo. Substitute the link with your repo URL!
+
+::: {style="font-size: 70px;"}
+``` {.bash filename="terminal"}
+git remote add origin https://github.com/AnneOkk/testrepo.git
+```
+:::
+
+<br/>
+
+. . .
+
+10) push all the content from Git to GitHub:
+
+::: {style="font-size: 70px;"}
+``` {.bash filename="terminal"}
+git push origin master
+```
+:::
+
+<br/>
+
+##
+
+![](images/success.png)
+
+### 🎈 The pushed files should appear in your GitHub repository 🎈
+
+# Integrating osf with GitHub {background-color="#a13c65"}
+
+## Integrating osf with GitHub
+
+1)  Create your osf project
+
+. . .
+
+2)  Enable GitHub in Add-ons
+
+![](images/osf_int.png){width="850px"}
+
+## 
+
+3)  Import GitHub Account
+
+![](images/osf_imp.png){width="600px"}
+
+## 
+
+### 4. Select Repo
+
+![](images/osf_sel.png){width="800px"}
+
+. . .
+
+::: fragment
+
+### 🎊 Yey, you're all set to connect your GitHub content to osf! 🎊
+:::
+
+# Publishing on RPubs 📱
+
+![](images/rpubs.png)
+
+# `r fontawesome::fa("laptop-code", "white")` Your Turn (30 min) {background-color="#447099" transition="slide-in"}
+
+1.  Get Git and GitHub up and running
+
+2. Create a GitHub repository (decide whether public or private)
+
+3.  Connect your local R project folder with a GitHub repository (either upload on website or push through terminal)
+
+4.  Change some of the content in R, save, and then push the changes to GitHub 
+
+5. [OPTIONAL: Publish on RPubs and connect with osf]
+
+::: {style="font-size: 70px;"}
+``` {.bash filename="terminal"}
+git add .
+git commit -m "senseful commit message that describes the change(s)"
+git push origin master
+```
+:::
+
+# Questions? Remarks? {background-color="#a13c65"}
+
+# Find me at: {background-color="#DADEFD"} 
+
+![](images/me.jpeg){height="550px"}
+
+::: {style="text-align: right;"}
+
+`r fa("github")` [\@AnneOkk](https://github.com/AnneOkk)
+
+`r fa("link")` [http://annekathrinkleine.com/](https://annekathrinkleine.com//)
+
+`r fa("envelope")` [a.k.kleine@lmu.de](a.k.kleine@lmu.de)
+
+:::
+
+# Thank you and have a lovely day! {background-color="#a13c65"}
