@@ -47,7 +47,7 @@ library(gtExtras)
 :::
 
 ::: fragment
-### 9.40-10.30: Getting Started with R and Quarto
+### 9.30-10.30: Getting Started with R and Quarto
 
 -   Basics of R programming
 -   Best practices for organizing your code and materials
@@ -105,16 +105,6 @@ library(gtExtras)
 
 -   Open RStudio
 
-------------------------------------------------------------------------
-
-## Install relevant packages
-
-```{r}
-#| echo: fenced
-#| eval: false
-pkg_list <- c("tidyverse", "haven", "flextable", "broom", "report", "effectsize", "rempsyc")
-install.packages(pkg_list)
-```
 
 # Reproducibility and open science {background-color="#a13c65"}
 
@@ -240,6 +230,7 @@ Output ![](https://quarto.org/images/hello-knitr.png)
 
 # Creating a data analysis project {background-color="#a13c65"}
 
+
 ## Create a folder for your R project
 
 ![](images/folder_new.png)
@@ -250,7 +241,14 @@ Output ![](https://quarto.org/images/hello-knitr.png)
 
 ![](images/new_r.png)
 
-------------------------------------------------------------------------
+## Install relevant packages
+
+```{r}
+#| echo: fenced
+#| eval: false
+pkg_list <- c("tidyverse", "haven", "flextable", "broom", "report", "effectsize", "rempsyc")
+install.packages(pkg_list)
+```
 
 ## Create an R project
 
@@ -282,6 +280,18 @@ When a project is opened within RStudio the following actions are taken:
 
 -   Other RStudio settings (e.g. active tabs, splitter positions, etc.) are restored to where they were the last time the project was closed
 
+::: {.notes}
+1. A new R session is started: A fresh R session begins to guarantee that any variables, functions, and loaded packages from the previous session are cleared. This helps prevent any conflicts or issues that may have carried over from other projects or work.
+
+2. The .Rprofile, .RData file, and .Rhistory files in the project’s main directory are loaded: These files preserve the state of your R environment. .Rprofile contains code that is run every time you start R, .RData saves the objects in your environment, and .Rhistory stores your command history. Loading these files ensures that your project's environment and history are restored.
+
+3. The current working directory is set to the project directory: This means that when you read or write files, RStudio will automatically look in the project directory, which saves you having to specify the full file path. It makes it much easier to run and manage your project's files.
+
+4. Previously edited source documents are restored into editor tabs: The source files (like .R scripts) that were open when you last closed the project will re-open. This restores your working context, allowing you to pick up right where you left off.
+
+5. Other RStudio settings (e.g. active tabs, splitter positions, etc.) are restored to where they were the last time the project was closed: This feature preserves the UI state of your RStudio session. Active tabs (like Console, Environment, etc.) are switched back to their previous state. Also, splitter positions (the size and arrangement of your panels/windows) are restored, so you don't have to spend time rearranging your workspace every time you re-open your project.
+:::
+
 # Working with Quarto {background-color="#a13c65"}
 
 ## How does Quarto work?
@@ -310,7 +320,7 @@ When a project is opened within RStudio the following actions are taken:
 
 ## Rendering
 
-2.  System shell via `quarto render`
+2.  Terminal shell via `quarto render`
 
 ::: {style="font-size: 60px;"}
 ``` {.bash filename="terminal"}
