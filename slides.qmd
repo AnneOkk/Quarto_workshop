@@ -93,6 +93,26 @@ library(gtExtras)
 -   Q&A session
 :::
 
+## Notes
+
+- If you want to say something, please raise your hand. If I don't see it, please unmute yourself and start talking
+
+. . .
+
+- Please participate actively throughout the course - can be comments, questions (!), answers
+
+. . .
+
+- Mute yourself when you are not speaking
+
+. . .
+
+- Small technical challenges may be addressed directly (e.g., "Where do I have to click to open RStudio?")
+
+. . .
+
+- Bigger technical challenges may be addressed either after the workshop today or before the workshop tomorrow (e.g., "My RStudio does not work")
+
 ## Workshop Requirements
 
 -   Are you on the [latest version of RStudio](https://posit.co/download/rstudio-desktop/#download)?
